@@ -1,20 +1,25 @@
 import {Compile} from "./engine/compiler.js"
-import anime from "animejs"
+import { SVG } from '@svgdotjs/svg.js'
 
 const codeTextarea = document.getElementById("code");
 const submitButton = document.getElementById("submit");
 const instructionList = document.getElementById("instructionList");
-
+let draw = null;
 
 submitButton.addEventListener("click", function(e) {
+    draw = SVG().addTo('#machine').size(800, 700);
+
     e.preventDefault();
     let c = Compile(codeTextarea.value);
     instructionList.innerHTML = "";
-    var timeline = anime.timeline({})
-    c.instructions.forEach((x)=>{
-        instructionList.innerHTML += "<li>"+x+"</li>"
+ //   var stack_bg = draw.rect(800, 100).attr({ fill: '#f06' })
+    var stack = draw.group().addClass("stack")
 
-        //pass the instruction over to an animation thing that runs each animation ...as the runtime, basically.
-        //timeline.add({})
+    c.instructions.forEach((x)=>{
+        var item = document.createElement("li")
+        stack.rect(20, 100).attr({fill: '#091'}).animate().move(stack.children().length*25,0);
+        instructionList.appendChild(item);
+        item.id = x.id;
+        item.innerText =x.t;
     })
 })
