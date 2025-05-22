@@ -21,6 +21,7 @@ class IntermediateRep:
         return str(self.routines[0])
 
 class CommandType(Enum):
+    PRINT = 0,
     PUSH = 1,
     POP = 2,
     ADD = 3,
@@ -29,7 +30,8 @@ class CommandType(Enum):
     DIV = 6,
     AND = 7,
     OR = 8,
-    PRINT = 7,
+    CMP = 9
+    NOT = 10
 
 class Command:
     def __init__(self, command: CommandType, argument=None):

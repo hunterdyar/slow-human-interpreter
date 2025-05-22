@@ -1,10 +1,17 @@
 from interpreter.IntermediateRep import IntermediateRep, CommandType
 
-frames = []
-ir = None
+class HumanSimulator(IntermediateRep):
+    def __init__(self, intermediate):
+        self.ir = intermediate
+        self.frames = [Frame(self,self.ir.routines[0])]
+        self.output = ""
+    def execute(self):
+        return self.frames[-1].execute()
+
 
 class Frame:
-    def __init__(self, routine):
+    def __init__(self, sim, routine):
+        self.sim = sim
         self.routine = routine
         self.instr = 0
         self.stack = []
@@ -46,6 +53,40 @@ class Frame:
                 right = self.stack.pop()
                 division = left or right
                 self.stack.append(division)
+            elif instruction.command == CommandType.CMP:
+                left = self.stack.pop()
+                right = self.stack.pop()
+                answer = False
+                if instruction.argument == "Eq":
+                    answer = left == right
+                elif instruction.argument == "NotEq":
+                    answer = left != right
+                elif instruction.argument == "Lt":
+                    answer = left < right
+                elif instruction.argument == "LtE":
+                    answer = left <= right
+                elif instruction.argument == "Gt":
+                    answer = left > right
+                elif instruction.argument == "GtE":
+                    answer = left >= right
+                elif instruction.argument == "Is":
+                    answer = left is right
+                elif instruction.argument == "IsNot":
+                    answer = left is not right
+                elif instruction.argument == "NotIn":
+                    answer = left not in right
+                elif instruction.argument == "In":
+                    answer = left in right
+                self.stack.append(answer)
+            elif instruction.command == CommandType.NOT:
+                left = self.stack.pop()
+                left = not left
+                self.stack.append(left)
+            elif instruction.command == CommandType.PRINT:
+                n = int(instruction.argument)
+                for i in range(n):
+                     self.sim.output += str(self.stack.pop())
+
             self.instr += 1
 
         # executing done?
@@ -55,11 +96,4 @@ class Frame:
             top = self.stack.pop()
             return top
 
-
-def execute(intermediate: IntermediateRep):
-    global frames,ir
-    ir = intermediate
-    # call the base frame.
-    frames.append(Frame(ir.routines[0]))
-    return frames[-1].execute()
 

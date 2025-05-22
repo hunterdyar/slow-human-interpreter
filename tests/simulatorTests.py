@@ -1,63 +1,73 @@
 import unittest
 
-from humansimulator.humanSimulator import execute
+from humansimulator.humanSimulator import HumanSimulator
 from interpreter.Interpreter import interpret
 
+def execute(code: str) -> object:
+    x = interpret(code)
+    sim = HumanSimulator(x)
+    return sim.execute()
+def execute_get_output(code: str) -> object:
+    x = interpret(code)
+    sim = HumanSimulator(x)
+    sim.execute()
+    return sim.output
 
 class TestSimulator(unittest.TestCase):
     def test_add(self):
-        x = interpret("1+3")
-        result = execute(x)
+        result = execute("1+3")
         self.assertEqual(4,result)
 
     def test_sub(self):
-        x = interpret("4-5")
-        result = execute(x)
+        result = execute("4-5")
         self.assertEqual(-1,result)
 
     def test_mult(self):
-        x = interpret("2*3*7")
-        result = execute(x)
+        result = execute("2*3*7")
         self.assertEqual(42,result)
 
     def test_div(self):
-        x = interpret("100/25")
-        result = execute(x)
+        result = execute("100/25")
         self.assertEqual(4,result)
 
     def test_math(self):
-        x = interpret("(2+3*2)/4")
-        result = execute(x)
+        result = execute("(2+3*2)/4")
         self.assertEqual(2,result)
 
     def test_and(self):
-        x = interpret("True and False")
-        result = execute(x)
+        result = execute("True and False")
         self.assertEqual(False, result)
-        x = interpret("True and True")
-        result = execute(x)
+        result = execute("True and True")
         self.assertEqual(True, result)
-        x = interpret("False and False")
-        result = execute(x)
+        result = execute("False and False")
         self.assertEqual(False, result)
-        x = interpret("False and True")
-        result = execute(x)
+        result = execute("False and True")
         self.assertEqual(False, result)
 
     def test_or(self):
-        x = interpret("True or False")
-        result = execute(x)
+        result = execute("True or False")
         self.assertEqual(True, result)
-        x = interpret("True or True")
-        result = execute(x)
+        result = execute("True or True")
         self.assertEqual(True, result)
-        x = interpret("False or False")
-        result = execute(x)
+        result = execute("False or False")
+        
         self.assertEqual(False, result)
-        x = interpret("False or True")
-        result = execute(x)
+        result = execute("False or True")
+        
         self.assertEqual(True, result)
 
-    #def test_named(self):
-     #   x = interpret("a")
-      #  result = execute(x)
+    def test_compare(self):
+        result = execute("False == True")
+        self.assertEqual(False, result)
+
+    def test_not(self):
+        result = execute("not True")
+        self.assertEqual(False, result)
+        result = execute("not False")
+        self.assertEqual(True, result)
+
+    def test_print(self):
+        result = execute_get_output("print(True)")
+        self.assertEqual("True", result)
+        result = execute_get_output("print(1, 2)")
+        self.assertEqual("12", result)
