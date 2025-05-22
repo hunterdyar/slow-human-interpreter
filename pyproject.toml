@@ -3,7 +3,9 @@ name = "slow-human-interpreter"
 version = "0.1.0"
 description = "a python interpreter that compiles python to a pdf packet to be executed by humans"
 requires-python = ">=3.9"
-dependencies = []
+dependencies = [
+    "chevron>=0.14.0",
+]
 
 [dependency-groups]
 dev = [

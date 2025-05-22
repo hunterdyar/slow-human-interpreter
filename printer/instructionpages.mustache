@@ -1,0 +1,59 @@
+<html>
+<head>
+    <style>
+        .instruction-container{
+            display: grid;
+            grid-template-columns: 5in 5in;
+            grid-column-gap: .2in;
+            grid-row-gap: .2in;
+        }
+        .instruction{
+            position: relative;
+            display: block;
+            border: 3px solid black;
+            width: 5in;
+            height: 3in;
+        }
+        .instruction-number{
+            position: absolute;
+            right:.25in;
+            top:0;
+            font-size: 72pt;
+            color: dimgrey;
+        }
+        .instruction-name{
+            text-align: center;
+            font-size: 28pt
+        }
+        .instruction-argument{
+            text-align: center;
+        }
+        .page{page-break-after: always}
+</style>
+    </head>
+<body>
+<div class="page">
+<div class="instruction-container">
+    {{# instructions }}
+        <div class="instruction">
+            <div class="instruction-number">{{number}}</div>
+            <h2 class="instruction-name">{{name}}</h2>
+            {{#argument}}
+            <div class="instruction-argument">
+                <h3>{{.}}</h3>
+            </div>
+            {{/argument}}
+            <div class="instruction-details">
+                <ol>
+                    {{#details}}
+                    <li>{{.}}
+                    {{/details}}
+                </ol>
+            </div>
+        </div>
+    {{/instructions}}
+
+</div>
+</div>
+</body>
+</html>
