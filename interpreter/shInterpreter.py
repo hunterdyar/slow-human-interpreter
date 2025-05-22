@@ -23,8 +23,8 @@ class Visitor(ast.NodeVisitor):
     def visit_BinOp(self, node):
         self.visit(node.right)
         self.visit(node.left)
-        ctpye = get_command_type(node.op)
-        self.ir.add_command(Command(ctpye))
+        command_type = get_command_type(node.op)
+        self.ir.add_command(Command(command_type))
 
 def get_command_type(op: ast.operator) -> CommandType:
     if isinstance(op, ast.Add): return CommandType.ADD

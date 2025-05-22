@@ -1,10 +1,9 @@
 from interpreter.IntermediateRep import IntermediateRep, CommandType
-from interpreter.shInterpreter import Visitor
 
 frames = []
 ir = None
 
-class Frame():
+class Frame:
     def __init__(self, routine):
         self.routine = routine
         self.instr = 0
@@ -41,13 +40,9 @@ class Frame():
             self.instr += 1
 
         # executing done?
-        if(len(self.stack) == 0):
+        if len(self.stack) == 0:
             return None
-        elif(len(self.stack) == 1):
-            top = self.stack.pop()
-            return top
         else:
-            #ehhhhhhh?
             top = self.stack.pop()
             return top
 
