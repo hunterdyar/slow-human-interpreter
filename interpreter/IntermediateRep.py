@@ -27,6 +27,8 @@ class CommandType(Enum):
     SUB = 4,
     MUL = 5,
     DIV = 6,
+    AND = 7,
+    OR = 8,
     PRINT = 7,
 
 class Command:

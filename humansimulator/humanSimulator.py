@@ -36,7 +36,16 @@ class Frame:
                 right = self.stack.pop()
                 division = left / right
                 self.stack.append(division)
-
+            elif instruction.command == CommandType.AND:
+                left = self.stack.pop()
+                right = self.stack.pop()
+                division = left and right
+                self.stack.append(division)
+            elif instruction.command == CommandType.OR:
+                left = self.stack.pop()
+                right = self.stack.pop()
+                division = left or right
+                self.stack.append(division)
             self.instr += 1
 
         # executing done?

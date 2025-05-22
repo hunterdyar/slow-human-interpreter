@@ -1,6 +1,6 @@
 import unittest
 
-from interpreter.shInterpreter import interpret
+from interpreter.Interpreter import interpret
 
 
 class TestCompiler(unittest.TestCase):

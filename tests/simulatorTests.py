@@ -1,7 +1,7 @@
 import unittest
 
 from humansimulator.humanSimulator import execute
-from interpreter.shInterpreter import interpret
+from interpreter.Interpreter import interpret
 
 
 class TestSimulator(unittest.TestCase):
@@ -25,8 +25,39 @@ class TestSimulator(unittest.TestCase):
         result = execute(x)
         self.assertEqual(4,result)
 
-
     def test_math(self):
         x = interpret("(2+3*2)/4")
         result = execute(x)
         self.assertEqual(2,result)
+
+    def test_and(self):
+        x = interpret("True and False")
+        result = execute(x)
+        self.assertEqual(False, result)
+        x = interpret("True and True")
+        result = execute(x)
+        self.assertEqual(True, result)
+        x = interpret("False and False")
+        result = execute(x)
+        self.assertEqual(False, result)
+        x = interpret("False and True")
+        result = execute(x)
+        self.assertEqual(False, result)
+
+    def test_or(self):
+        x = interpret("True or False")
+        result = execute(x)
+        self.assertEqual(True, result)
+        x = interpret("True or True")
+        result = execute(x)
+        self.assertEqual(True, result)
+        x = interpret("False or False")
+        result = execute(x)
+        self.assertEqual(False, result)
+        x = interpret("False or True")
+        result = execute(x)
+        self.assertEqual(True, result)
+
+    #def test_named(self):
+     #   x = interpret("a")
+      #  result = execute(x)
