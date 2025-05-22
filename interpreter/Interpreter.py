@@ -58,6 +58,10 @@ class Visitor(ast.NodeVisitor):
         raise Exception("GeneratorExp is not currently supported.")
     def visit_Slice(self, node):
         raise Exception("You got to slice without going through subscript. uh oh.")
+    def visit_ImportFrom(self, node):
+        raise Exception("imports are not allowed! get out of here with that.")
+    def visit_Import(self, node):
+        raise Exception("imports are not allowed! get out of here with that.")
 
 def get_command_type(op: ast.operator | ast.boolop) -> CommandType:
     if isinstance(op, ast.Add):
