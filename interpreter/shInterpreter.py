@@ -14,15 +14,15 @@ class Visitor(ast.NodeVisitor):
         self.ir = ir
 
     def visit_Constant(self, node):
-        v = str(node.value)
+        v = node.value
         self.ir.add_command(Command(CommandType.PUSH, v))
 
     def visit_FunctionDef(self,node):
         self.generic_visit(node)
 
     def visit_BinOp(self, node):
-        self.visit(node.left)
         self.visit(node.right)
+        self.visit(node.left)
         ctpye = get_command_type(node.op)
         self.ir.add_command(Command(ctpye))
 

@@ -30,20 +30,15 @@ class CommandType(Enum):
     PRINT = 7,
 
 class Command:
-    def __init__(self, command: CommandType, arguments=None):
-        if arguments is None:
-            arguments = []
-        elif arguments is str:
-            arguments = [arguments]
-
+    def __init__(self, command: CommandType, argument=None):
         self.command = command
-        self.arguments = arguments
+        self.argument = argument
 
     def __str__(self):
-        if len(self.arguments) > 0:
+        if self.argument is None:
             return str(self.command)
         else:
-            return str(self.command) + str(self.arguments)
+            return str(self.command) + str(self.argument)
 
     def __repr__(self):
         return str(self.command)
