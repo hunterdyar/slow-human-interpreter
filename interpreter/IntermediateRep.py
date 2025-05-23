@@ -1,20 +1,29 @@
 from enum import Enum
 
+class Routine:
+    def __init__(self, name):
+        self.name = name
+        self.instructions = []
+        self.argumentCount = 0
+    def __str__(self):
+        return "Routine(%s)" % self.name + "\n" + str(len(self.instructions))
+    def __repr__(self):
+        return str(self)
 
 class IntermediateRep:
     def __init__(self):
         self.routines = []
-        self.routines.append([])
+        self.routines.append(Routine("main"))
 
     def add_command(self, command):
-        self.routines[-1].append(command)
-        return len(self.routines[-1]) - 1
+        self.routines[-1].instructions.append(command)
+        return len(self.routines[-1].instructions) - 1
 
     def update_argument(self, command_index, new_argument):
-        self.routines[-1][command_index].argument = new_argument
+        self.routines[-1].instructions[command_index].argument = new_argument
 
     def get_top_index(self):
-        return len(self.routines[-1]) - 1
+        return len(self.routines[-1].instructions) - 1
 
     # todo: make wrapper object for routine that gives routines names and threadability(?) status
     def push_routine(self):
@@ -34,8 +43,9 @@ class IntermediateRep:
 
     def get_pretty_object(self):
         out = {"instructions": []}
-        num = 1
-        for command in self.routines[0]:
+        num = 1 # the first command is 1 lol, lol
+        out["routineID"] = self.routines[0].name
+        for command in self.routines[0].instructions:
             out["instructions"].append(command.get_pretty_object(num))
             num += 1
 
@@ -137,7 +147,6 @@ details = {
         "Discard the tested value on A, if you have not already.",
     ]
 }
-
 argumentLookup = {
     "Eq": "Is Equal To",
     "NotEQ": "Is Not Equal To",
@@ -178,9 +187,11 @@ class Command:
     def get_pretty_argument(command, argument):
         if command == CommandType.CMP:
             return argumentLookup[argument]
-        if command == CommandType.PUSH:
+        elif command == CommandType.PUSH:
             if isinstance(argument, str):
                 return '"' + argument + '"'
             return str(argument)
+        elif command == CommandType.JMP or command == CommandType.JF:
+            return argument+1 # commands start counting at 1 so we have to offset the internal (0 index) to the visual (counting). also: lol, lmao
         else:
             return argument

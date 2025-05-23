@@ -39,7 +39,6 @@ class Visitor(ast.NodeVisitor):
         # only NOT is supported. Invert (~), UAdd, and USub are not currently supported.
         command_type = operator_type_to_command_type(node.op)
         self.ir.add_command(Command(command_type))
-
     def visit_Name(self, node):
         # determine if this is a local or a global
         print(node.id)
@@ -63,12 +62,14 @@ class Visitor(ast.NodeVisitor):
         if has_else:
             skip_else_index = self.ir.add_command(Command(CommandType.JMP,-1))
         #set the conditional jump to jump to after the body.
-        self.ir.update_argument(cond_jump_index, self.ir.get_top_index())
+
+        self.ir.update_argument(cond_jump_index, self.ir.get_top_index() + 1)
+
         if has_else:
             for expr in node.orelse:
                 self.visit(expr)
             ##skip else should skip the else, go to here.
-            self.ir.update_argument(skip_else_index, self.ir.get_top_index())
+            self.ir.update_argument(skip_else_index, self.ir.get_top_index() + 1)
 
     def visit_While(self, node):
         self.break_command_stack.append([])

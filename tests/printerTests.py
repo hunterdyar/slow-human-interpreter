@@ -21,3 +21,22 @@ else:
     print("cake")
 """)
         create_html_file(x)
+
+class TestPrinter2(unittest.TestCase):
+    def test_empty(self):
+        x = interpret("1+2 > 3*4")
+        create_html_file(x)
+
+    def test_jumps(self):
+        x = interpret("""
+if False:
+    print("banana")
+    print("banana")
+    print("banana")
+else:
+    print("cake")
+    print("cake")
+    print("cake")
+print("done")
+""")
+        create_html_file(x)
