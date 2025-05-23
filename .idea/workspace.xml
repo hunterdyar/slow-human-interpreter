@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="sort of have function calls working.">
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="test out of order def works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/simulatorTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/simulatorTests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/IntermediateRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/IntermediateRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/Interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/Interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/printer/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/printer/instructionpages.mustache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +57,7 @@
     "Python tests.Python tests for printerTests.TestPrinter.executor": "Run",
     "Python tests.Python tests for printerTests.TestPrinter.test_empty.executor": "Run",
     "Python tests.Python tests for printerTests.TestPrinter.test_jumps.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.executor": "Debug",
+    "Python tests.Python tests for printerTests.TestPrinter2.executor": "Run",
     "Python tests.Python tests for printerTests.TestPrinter2.test_functon_defs.executor": "Run",
     "Python tests.Python tests for printerTests.TestPrinter2.test_jumps.executor": "Debug",
     "Python tests.Python tests for simulatorTests.TestSimulator.executor": "Run",
@@ -102,7 +104,7 @@
       <recent name="S:\python\slow-human-interpreter\printer\partials" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for simulatorTests.TestSimulator.test_simple_function_call">
+  <component name="RunManager" selected="Python tests.Python tests for printerTests.TestPrinter2">
     <configuration name="Python tests for printerTests.TestPrinter2" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="slow-human-interpreter" />
       <option name="ENV_FILES" value="" />
@@ -185,9 +187,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for printerTests.TestPrinter2" />
         <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_simple_function_call" />
         <item itemvalue="Python tests.Python tests for printerTests.TestPrinter2.test_functon_defs" />
-        <item itemvalue="Python tests.Python tests for printerTests.TestPrinter2" />
         <item itemvalue="Python tests.Python tests for printerTests.TestPrinter2.test_jumps" />
         <item itemvalue="Python tests.Unittests for printerTests" />
       </list>
@@ -302,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748019406827</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="test out of order def works">
+      <option name="closed" value="true" />
+      <created>1748019564426</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1748019564426</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,14 +330,15 @@
     <MESSAGE value="actually use the prettier command names." />
     <MESSAGE value="jump logic bug fixed" />
     <MESSAGE value="sort of have function calls working." />
-    <option name="LAST_COMMIT_MESSAGE" value="sort of have function calls working." />
+    <MESSAGE value="test out of order def works" />
+    <option name="LAST_COMMIT_MESSAGE" value="test out of order def works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/interpreter/Interpreter.py</url>
-          <line>70</line>
+          <line>71</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -347,6 +358,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Interpreter.coverage" NAME="Interpreter Coverage Results" MODIFIED="1747959868459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Unittests_for_printerTests.coverage" NAME="Unittests for printerTests Coverage Results" MODIFIED="1748012046440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748019536831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748020983258" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

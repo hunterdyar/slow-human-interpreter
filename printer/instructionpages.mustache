@@ -21,14 +21,21 @@
             font-size: 72pt;
             color: dimgrey;
         }
-        .instruction-name{
-            text-align: center;
-            font-size: 28pt
+        .routine-name{
+            position: absolute;
+            left: .1in;
+            bottom: .1in;
+            font-size: 10pt;
+            color: lightgray;
         }
         .instruction-argument{
             text-align: center;
             font-size: 20pt;
             color: forestgreen;
+        }
+        .instruction-name{
+            text-align: center;
+            font-size: 28pt
         }
         .instruction-details .argument{
             color: forestgreen;
@@ -41,31 +48,42 @@
             margin-bottom: 0;
         }
         .page{page-break-after: always}
+
 </style>
     </head>
 <body>
-<div class="page">
-<div class="instruction-container">
-    {{# instructions }}
-        <div class="instruction">
-            <div class="instruction-number">{{number}}</div>
-            <h2 class="instruction-name">{{name}}</h2>
-            {{#argument}}
-            <div class="instruction-argument">
-                <h3>{{{.}}}</h3>
-            </div>
-            {{/argument}}
-            <div class="instruction-details">
-                <ol>
-                    {{#details}}
-                    <li>{{{.}}}
-                    {{/details}}
-                </ol>
-            </div>
-        </div>
-    {{/instructions}}
+    {{# routines}}
+        <div class="page">
+        <h1 class="routine-start">{{name}}</h1>
+        <div class="instruction-container">
 
-</div>
-</div>
+        {{# instructions }}
+                <div class="instruction">
+                    <div class="instruction-number">{{number}}</div>
+                    <h2 class="instruction-name">{{name}}</h2>
+                    {{#argument}}
+                    <div class="instruction-argument">
+                        <h3>{{{.}}}</h3>
+                    </div>
+                    {{/argument}}
+                    <div class="instruction-details">
+                        <ol>
+                            {{#details}}
+                            <li>{{{.}}}
+                            {{/details}}
+                        </ol>
+                    </div>
+                    <div class="routine-name">
+                        {{routine}}
+                    </div>
+                </div>
+        {{/instructions}}
+        </div>
+        </div>
+
+    {{/routines}}
+
+
+
 </body>
 </html>

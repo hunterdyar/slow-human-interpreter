@@ -7,6 +7,7 @@ def interpret(source: str) -> IntermediateRep:
     tree = ast.parse(source)
     visitor = Visitor(ir)
     visitor.visit(tree)
+    ir.pop_routine()
     return ir
 
 class Visitor(ast.NodeVisitor):

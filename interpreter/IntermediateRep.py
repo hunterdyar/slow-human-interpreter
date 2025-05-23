@@ -13,6 +13,15 @@ class Routine:
             return False
     def add_local(self, local_id):
         self.locals[local_id] = len(self.locals)
+    def get_pretty_routine(self):
+        out = {"instructions": [],
+                "name": self.name,
+                "localCount": len(self.locals)}
+        num = 1
+        for command in self.instructions:
+            out["instructions"].append(command.get_pretty_object(num, self.name))
+            num += 1
+        return out
 
     def __str__(self):
         return "Routine(%s)" % self.name + "\n" + str(len(self.instructions))
@@ -62,13 +71,9 @@ class IntermediateRep:
         return str(self.routine_stack[0])
 
     def get_pretty_object(self):
-        out = {"instructions": []}
-        num = 1 # the first command is 1 lol, lol
-        out["routineID"] = self.routine_stack[0].name
-        for command in self.routine_stack[0].instructions:
-            out["instructions"].append(command.get_pretty_object(num))
-            num += 1
-
+        out = {"routines": []}
+        for routine in reversed(self.routines.values()):
+            out["routines"].append(routine.get_pretty_routine())
         return out
 
     def get_global_index(self, id):
@@ -229,11 +234,12 @@ class Command:
     def __repr__(self):
         return str(self.command)
 
-    def get_pretty_object(self, num: int):
+    def get_pretty_object(self, num: int, routine_name: str):
         out = {"name": command_name_lookup[self.command],
                "argument": self.get_pretty_argument(self.command, self.argument),
                "number": num,
-               "details": details[self.command]
+               "details": details[self.command],
+               "routine": routine_name,
                }
         return out
 
