@@ -77,63 +77,63 @@ command_name_lookup = {
 }
 details = {
     CommandType.PUSH: [
-        "Put the above value onto the stack."
+        "Put the <span class=\"argument\">above value</span> onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.POP: [
-        "Take the top of the stack and place on the discard pile."
+        "Take the top of <span class=\"stack\">the stack</span> and place on the discard pile."
     ],
     CommandType.ADD: [
-        "Take the top of the stack and place on A.",
-        "Take the top of the stack and place on B.",
-        "Add these two values together and note the answer.",
-        "Place this answer on a card, and put on the stack.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
+        "<strong>Add</strong> these two values together and note the answer.",
+        "Place this answer on a card, and place on top of <span class=\"stack\">the stack</span>.",
         "Discard A and B."
     ],
     CommandType.SUB: [
-        "Take the top of the stack and place on A.",
-        "Take the top of the stack and place on B.",
-        "Subtract these two values together and note the answer.",
-        "Place this answer on a card, and put on the stack.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
+        "<strong>Subtract</strong> these two values (a minus b) and note the answer.",
+        "Place this answer on a card, and put on <span class=\"stack\">the stack</span>.",
         "Discard A and B."
     ],
     CommandType.MUL: [
-        "Take the top of the stack and place on A.",
-        "Take the top of the stack and place on B.",
-        "Multiply these two values together and note the answer.",
-        "Place this answer on a card, and put on the stack.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
+        "<strong>Multiply</strong> these two values together and note the answer.",
+        "Place this answer on a card, and put on <span class=\"stack\">the stack</span>.",
         "Discard A and B."
     ],
     CommandType.DIV: [
-        "Take the top of the stack and place on A.",
-        "Take the top of the stack and place on B.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
         "<strong>Divide</strong> these two values together and note the answer.",
-        "Place this answer on a card, and put on the stack.",
+        "Place this answer on a card, and put on <span class=\"stack\">the stack</span>.",
         "Discard A and B."
     ],
     CommandType.PRINT: [
-        "Take the top of the stack and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Scream the value of the card on A as loudly as you can.",
         "Discard A"
     ],
     CommandType.NOT: [
-        "Take the top of the stack and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Negate the value. True becomes false and false becomes true.",
-        "Place this negated value on the top of the stack.",
-        "You will have replaced the top of the stack with it's opposite."
+        "Place this negated value on the top of <span class=\"stack\">the stack</span>.",
+        "You will have replaced the top of <span class=\"stack\">the stack</span> with it's opposite."
     ],
     CommandType.CMP: [
-        "Take the top of the stack and place on A.",
-        "Take the top of the stack and place on B.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
         "Compare A and B using the above operator. A is to the left and B is to the right.",
-        "Take the result (which should be 'True' or 'False') and place on the top of the stack."
+        "Take the result (which should be 'True' or 'False') and place on the top of <span class=\"stack\">the stack</span>."
     ],
     CommandType.JMP: [
-        "Turn the instructions to the above instruction number. (You will do that instruction next)."
+        "Instead of flipping to the next instruction. Instead, flip to the <span class=\"argument\">above instruction</span>."
     ],
     CommandType.JF: [
-        "Take the top of the stack and place it on A.",
-        "If this value is True, discard the value and continue.",
-        "If this value is False, None, or 0, turn the instructions to the above instruction number. Do that instruction next.",
+        "Take the top of <span class=\"stack\">the stack</span> and place it on A.",
+        "If this value is <strong>True</strong>, a non-zero value, or a non-empty set, discard the value and continue.",
+        "If this value is <strong>False</strong>, <strong>None</strong>, or <strong>0</strong>, flip to the  <span class=\"argument\">above instruction number</span>. Do that instruction next.",
         "Discard the tested value on A, if you have not already.",
     ]
 }

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="jump, jump-if-false, prettier printing, parse if's, elifs, and untested-while's">
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="actually use the prettier command names.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/IntermediateRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/IntermediateRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/printer/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/printer/instructionpages.mustache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +207,7 @@
       <workItem from="1747924566624" duration="33000" />
       <workItem from="1747924625802" duration="25000" />
       <workItem from="1747924697922" duration="12000" />
-      <workItem from="1747924721413" duration="15939000" />
+      <workItem from="1747924721413" duration="18457000" />
     </task>
     <task id="LOCAL-00001" summary="starting a rewrite in python">
       <option name="closed" value="true" />
@@ -272,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747962841680</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="actually use the prettier command names.">
+      <option name="closed" value="true" />
+      <created>1747962970398</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747962970398</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +296,8 @@
     <MESSAGE value="Comparisons, NOT, print call is special" />
     <MESSAGE value="first pass at mustache and printing." />
     <MESSAGE value="jump, jump-if-false, prettier printing, parse if's, elifs, and untested-while's" />
-    <option name="LAST_COMMIT_MESSAGE" value="jump, jump-if-false, prettier printing, parse if's, elifs, and untested-while's" />
+    <MESSAGE value="actually use the prettier command names." />
+    <option name="LAST_COMMIT_MESSAGE" value="actually use the prettier command names." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -307,6 +317,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Interpreter.coverage" NAME="Interpreter Coverage Results" MODIFIED="1747959868459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
-    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1747962929928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1747970059470" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>
