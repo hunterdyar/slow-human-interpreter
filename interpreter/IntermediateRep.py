@@ -13,6 +13,17 @@ class Routine:
             return False
     def add_local(self, local_id):
         self.locals[local_id] = len(self.locals)
+        return self.locals[local_id]
+
+    def get_local_index(self, local_id):
+        return self.locals[local_id]
+
+    def get_or_set_local_index(self, local_id):
+        if local_id in self.locals:
+            return self.locals[local_id]
+        else:
+            return self.add_local(local_id)
+
     def get_pretty_routine(self):
         out = {"instructions": [],
                 "name": self.name,
@@ -77,13 +88,21 @@ class IntermediateRep:
         return out
 
     def get_global_index(self, id):
-        return self.routines[0].get_local_index(id)
+        return self.routine_stack[0].get_local_index(id)
     def get_local_index(self, id):
         # python uses globals, not punch-through locals...right?
         if id in self.routine_stack[-1].locals:
             return self.routine_stack[-1].locals[id]
 
         raise Exception("Variable name "+ id +" not found")
+
+    def get_or_set_global_index(self, id):
+        return self.routine_stack[0].get_or_set_local_index(id)
+
+    def get_or_set_local_index(self, id):
+        # python uses globals, not punch-through locals...right?
+        return self.routine_stack[-1].get_or_set_local_index(id)
+
 
 class CommandType(Enum):
     PRINT = 0,
@@ -102,7 +121,9 @@ class CommandType(Enum):
     ROUND = 13
     ENTERFRAME = 14
     PUSHLOCAL = 15
-    PUSHGLOBAL = 16
+    SETLOCAL = 16
+    PUSHGLOBAL = 17
+    SETGLOBAL = 18
     #JT = 13,
     #JZ = 14,
 
@@ -123,8 +144,10 @@ command_name_lookup = {
     CommandType.JF: "Jump If False",
     CommandType.ROUND: "Round",
     CommandType.ENTERFRAME: "Start Procedure",
-    CommandType.PUSHLOCAL: "Push Frame Local",
-    CommandType.PUSHGLOBAL: "Push Global Variable",
+    CommandType.PUSHLOCAL: "Get Local Variable",
+    CommandType.SETLOCAL: "Set Local Variable",
+    CommandType.PUSHGLOBAL: "Get Global Variable",
+    CommandType.SETGLOBAL: "Set Global Variable",
 }
 details = {
     CommandType.PUSH: [
@@ -202,9 +225,17 @@ details = {
     CommandType.PUSHLOCAL:[
         "Copy the value at the above <span class=\"argument\">local number</span> and put it onto  <span class=\"stack\">the stack</span>."
     ],
+    CommandType.SETLOCAL:[
+        "If the above numbered local has a value, discard it.",
+       "Take the top of <span class=\"stack\">the stack</span> and place it on the above local value.",
+    ],
     CommandType.PUSHGLOBAL:[
         "Copy the value at the above <span class=\"argument\">global number</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
-    ]
+    ],
+    CommandType.SETGLOBAL:[
+        "If the above numbered global has a value, discard it.",
+        "Put the top value of <span class=\"stack\">the stack</span> and place it on the heap, on the above <span class=\"argument\">global number</span>."
+    ],
 }
 argumentLookup = {
     "Eq": "Is Equal To",

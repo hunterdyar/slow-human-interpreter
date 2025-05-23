@@ -33,6 +33,7 @@ def do_something_awesome(a,b):
     print(a)
     print(b)
 
-do_something_awesome(1,2)
+
+do_something_awesome(1,2+4)
 """)
         create_html_file(x)

@@ -43,12 +43,35 @@ class Visitor(ast.NodeVisitor):
         if self.should_use_globals(node.id):
             # push global!
             global_index = self.ir.get_global_index(node.id)
-            # self.ir.add_command(Command(CommandType.PUSHGLOBAL))
+            self.ir.add_command(Command(CommandType.PUSHGLOBAL, global_index))
         else:
             local_index = self.ir.get_local_index(node.id)
             self.ir.add_command(Command(CommandType.PUSHLOCAL, local_index))
 
         self.generic_visit(node)
+
+    def visit_Assign(self, node):
+        # leave value on stack
+        self.visit(node.value)
+
+        if len(node.targets) != 1:
+            raise Exception("Assignment with more than one target not currently supported.")
+
+        target_expression = node.targets[0]
+        if isinstance(target_expression, ast.Name):
+            target = target_expression.id
+        else:
+            raise Exception("Assignment with an unsupported assignee type.")
+
+        if self.should_use_globals(target):
+            # push global!
+            global_index = self.ir.get_or_set_global_index(target)
+            self.ir.add_command(Command(CommandType.SETGLOBAL, global_index))
+        else:
+            local_index = self.ir.get_or_set_local_index(target)
+            self.ir.add_command(Command(CommandType.SETLOCAL, local_index))
+
+
 
     def visit_Compare(self, node):
         if len(node.comparators) != 1:
@@ -79,8 +102,8 @@ class Visitor(ast.NodeVisitor):
 
     def visit_While(self, node):
         self.break_command_stack.append([])
-        start_of_loop = self.ir.get_top_index() + 1
-        #+1 ?
+        start_of_loop = self.ir.get_top_index()
+        #+1 ? so... this one we DON'T add the +1 to? i confused myself.
         self.visit(node.test)
         cond_jump_index = self.ir.add_command(Command(CommandType.JF, -1))
         for expr in node.body:
@@ -97,10 +120,6 @@ class Visitor(ast.NodeVisitor):
         self.break_command_stack.pop()
 
         self.ir.update_argument(cond_jump_index, exit_point)
-
-    def visit_Assign(self, node):
-        print(node)
-        self.generic_visit(node)
 
     def visit_Break(self, node):
         if len(self.break_command_stack) == 0:
@@ -198,13 +217,15 @@ class Visitor(ast.NodeVisitor):
 
 
     def should_use_globals(self, id):
+        if len(self.ir.routine_stack) == 1:
+            return True
         for scopes in self.use_globals_stack:
             if id in scopes:
                 return True
         return False
 
 
-def operator_type_to_command_type(op: ast.operator | ast.boolop) -> CommandType:
+def operator_type_to_command_type(op: ast.operator | ast.boolop | ast.unaryop) -> CommandType:
     if isinstance(op, ast.Add):
         return CommandType.ADD
     elif isinstance(op, ast.Sub):

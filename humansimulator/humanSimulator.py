@@ -3,7 +3,7 @@ from interpreter.IntermediateRep import IntermediateRep, CommandType
 class HumanSimulator:
     def __init__(self, intermediate):
         self.ir = intermediate
-        self.frames = [Frame(self, self.ir.routine_stack[0])]
+        self.frames = [Frame(self, self.ir.routines["main"])]
         self.output = ""
         self.globals = []
     def execute(self):
@@ -110,10 +110,26 @@ class Frame:
                 self.sim.execute_frame(new_frame)
             elif instruction.command == CommandType.PUSHLOCAL:
                 local_id = int(instruction.argument)
+                if local_id >= len(self.locals):
+                    raise Exception("Runtime (simulator) error. Global ID out of range")
                 self.stack.append(self.locals[local_id])
+            elif instruction.command == CommandType.SETLOCAL:
+                local_id = int(instruction.argument)
+                while len(self.locals) < local_id+1:
+                    self.locals.append(None)
+                self.locals[local_id] = self.stack.pop()
             elif instruction.command == CommandType.PUSHGLOBAL:
                 global_id = int(instruction.argument)
+                if global_id >= len(self.sim.globals):
+                    raise Exception("Runtime (simulator) error. Global ID out of range")
                 self.stack.append(self.sim.globals[global_id])
+            elif instruction.command == CommandType.SETGLOBAL:
+                global_id = int(instruction.argument)
+                while len(self.sim.globals) < global_id+1:
+                    self.sim.globals.append(None)
+                self.sim.globals[global_id] = self.stack.pop()
+            else:
+                raise Exception("Runtime (simulator) error. Unknown command '" + instruction.command + "'")
             self.instr += 1
 
 

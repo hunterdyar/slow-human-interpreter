@@ -114,8 +114,9 @@ print("-")
 while i>0:
     print(i)
     i = i-1
+print("-")
     """)
-        self.assertEqual("-54321", result)
+        self.assertEqual("-54321-", result)
 
     def test_simple_function_call(self):
         result = execute_get_output("""
