@@ -50,10 +50,8 @@ class TestSimulator(unittest.TestCase):
         result = execute("True or True")
         self.assertEqual(True, result)
         result = execute("False or False")
-        
         self.assertEqual(False, result)
         result = execute("False or True")
-        
         self.assertEqual(True, result)
 
     def test_compare(self):
@@ -71,3 +69,50 @@ class TestSimulator(unittest.TestCase):
         self.assertEqual("True", result)
         result = execute_get_output("print(1, 2)")
         self.assertEqual("12", result)
+
+    def test_if(self):
+        result = execute_get_output("""
+if False:
+  print("banana")
+""")
+        self.assertEqual("", result)
+
+        result = execute_get_output("""
+if False:
+          print("banana")
+else:
+    print("cheese")
+""")
+        self.assertEqual("cheese", result)
+
+        result = execute_get_output("""
+if True:
+    print("banana")
+else:
+    print("cheese")
+""")
+        self.assertEqual("banana", result)
+
+    def test_if_elif(self):
+        result = execute_get_output("""
+if False:
+    print("banana")
+elif False:
+    print("cheese")
+elif False:
+    print("cheese")
+else:
+    print("cake")
+""")
+        self.assertEqual("cake", result)
+
+# this will fail until I get variable assignment done, lol.
+    def test_while(self):
+            result = execute_get_output("""
+i = 5
+print("-")
+while i>0:
+    print(i)
+    i = i-1
+    """)
+            self.assertEqual("-54321", result)

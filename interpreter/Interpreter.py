@@ -10,6 +10,7 @@ def interpret(source: str) -> IntermediateRep:
     return ir
 
 class Visitor(ast.NodeVisitor):
+    break_command_stack = []
     def __init__(self, ir: IntermediateRep):
         self.ir = ir
 
@@ -52,6 +53,53 @@ class Visitor(ast.NodeVisitor):
         cmp_name = operator_to_compare_name(node.ops[0])
         self.ir.add_command(Command(CommandType.CMP, cmp_name))
 
+    def visit_If(self, node):
+        has_else = len(node.orelse) > 0
+        self.visit(node.test)
+        cond_jump_index = self.ir.add_command(Command(CommandType.JF, -1))
+        skip_else_index = 0
+        for expr in node.body:
+            self.visit(expr)
+        if has_else:
+            skip_else_index = self.ir.add_command(Command(CommandType.JMP,-1))
+        #set the conditional jump to jump to after the body.
+        self.ir.update_argument(cond_jump_index, self.ir.get_top_index())
+        if has_else:
+            for expr in node.orelse:
+                self.visit(expr)
+            ##skip else should skip the else, go to here.
+            self.ir.update_argument(skip_else_index, self.ir.get_top_index())
+
+    def visit_While(self, node):
+        self.break_command_stack.append([])
+        start_of_loop = self.ir.get_top_index() + 1
+        #+1 ?
+        self.visit(node.test)
+        cond_jump_index = self.ir.add_command(Command(CommandType.JF, -1))
+        for expr in node.body:
+            #any break's will get put on the top stack.
+            self.visit(expr)
+        # and back to the top!
+        self.ir.add_command(Command(CommandType.JMP, start_of_loop))
+        # or, skip that and back up.
+        exit_point = self.ir.get_top_index()
+
+        # update the breaks
+        for break_command_index in self.break_command_stack[-1]:
+            self.ir.update_argument(break_command_index, exit_point)
+        self.break_command_stack.pop()
+
+        self.ir.update_argument(cond_jump_index, exit_point)
+
+    def visit_Assign(self, node):
+        print(node)
+        self.generic_visit(node)
+
+    def visit_Break(self, node):
+        if len(self.break_command_stack) == 0:
+            raise Exception("not inside of a loop where we support break commands. (while?)")
+        self.ir.add_command(Command(CommandType.JMP, -1))
+        self.break_command_stack[-1].append(self.ir.get_top_index())
     # throwing down some exceptions so we can start to connect the dots on what subset of python we will want to support.
     # function calls and conditionals before I start worrying about this lol.
 

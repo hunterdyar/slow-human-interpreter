@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="Comparisons, NOT, print call is special">
-      <change afterPath="$PROJECT_DIR$/printer/instructionpages.mustache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/printer/printer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/printerTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="first pass at mustache and printing.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/humansimulator/humanSimulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/humansimulator/humanSimulator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/IntermediateRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/IntermediateRep.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/Interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/Interpreter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/printer/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/printer/instructionpages.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/printerTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/printerTests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/simulatorTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/simulatorTests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,11 +58,14 @@
     "Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor": "Debug",
     "Python tests.Python tests for CompilerTests.TestCompiler.test_print.executor": "Debug",
     "Python tests.Python tests for printerTests.TestPrinter.test_empty.executor": "Run",
+    "Python tests.Python tests for printerTests.TestPrinter.test_jumps.executor": "Debug",
     "Python tests.Python tests for simulatorTests.TestSimulator.executor": "Run",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_add.executor": "Run",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_and.executor": "Run",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_compare.executor": "Debug",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_div.executor": "Run",
+    "Python tests.Python tests for simulatorTests.TestSimulator.test_if.executor": "Debug",
+    "Python tests.Python tests for simulatorTests.TestSimulator.test_if_elif.executor": "Debug",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_invert.executor": "Debug",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_math.executor": "Run",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_mult.executor": "Run",
@@ -72,7 +74,9 @@
     "Python tests.Python tests for simulatorTests.TestSimulator.test_or.executor": "Run",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_print.executor": "Run",
     "Python tests.Python tests for simulatorTests.TestSimulator.test_sub.executor": "Run",
+    "Python tests.Python tests for simulatorTests.TestSimulator.test_while.executor": "Debug",
     "Python tests.Python tests in CompilerTests.py.executor": "Debug",
+    "Python.Interpreter.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
@@ -97,7 +101,7 @@
       <recent name="S:\python\slow-human-interpreter\printer\partials" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for printerTests.TestPrinter.test_empty">
+  <component name="RunManager" selected="Python tests.Python tests for printerTests.TestPrinter.test_jumps">
     <configuration name="Python tests for printerTests.TestPrinter.test_empty" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="slow-human-interpreter" />
       <option name="ENV_FILES" value="" />
@@ -114,7 +118,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for simulatorTests.TestSimulator" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for printerTests.TestPrinter.test_jumps" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="slow-human-interpreter" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -126,11 +130,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;simulatorTests.TestSimulator&quot;" />
+      <option name="_new_target" value="&quot;printerTests.TestPrinter.test_jumps&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for simulatorTests.TestSimulator.test_add" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for simulatorTests.TestSimulator.test_if" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="slow-human-interpreter" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -142,11 +146,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;simulatorTests.TestSimulator.test_add&quot;" />
+      <option name="_new_target" value="&quot;simulatorTests.TestSimulator.test_if&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for simulatorTests.TestSimulator.test_mult" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for simulatorTests.TestSimulator.test_if_elif" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="slow-human-interpreter" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,11 +162,11 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;simulatorTests.TestSimulator.test_mult&quot;" />
+      <option name="_new_target" value="&quot;simulatorTests.TestSimulator.test_if_elif&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for simulatorTests.TestSimulator.test_print" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for simulatorTests.TestSimulator.test_while" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="slow-human-interpreter" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,17 +178,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;simulatorTests.TestSimulator.test_print&quot;" />
+      <option name="_new_target" value="&quot;simulatorTests.TestSimulator.test_while&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for printerTests.TestPrinter.test_jumps" />
         <item itemvalue="Python tests.Python tests for printerTests.TestPrinter.test_empty" />
-        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_print" />
-        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator" />
-        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_add" />
-        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_mult" />
+        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_while" />
+        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_if_elif" />
+        <item itemvalue="Python tests.Python tests for simulatorTests.TestSimulator.test_if" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +211,7 @@
       <workItem from="1747924566624" duration="33000" />
       <workItem from="1747924625802" duration="25000" />
       <workItem from="1747924697922" duration="12000" />
-      <workItem from="1747924721413" duration="11443000" />
+      <workItem from="1747924721413" duration="15773000" />
     </task>
     <task id="LOCAL-00001" summary="starting a rewrite in python">
       <option name="closed" value="true" />
@@ -257,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747945738905</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="first pass at mustache and printing.">
+      <option name="closed" value="true" />
+      <created>1747950443320</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747950443320</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -270,20 +282,27 @@
     <MESSAGE value="and/or statements and ops." />
     <MESSAGE value="imports? not for alpha!" />
     <MESSAGE value="Comparisons, NOT, print call is special" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comparisons, NOT, print call is special" />
+    <MESSAGE value="first pass at mustache and printing." />
+    <option name="LAST_COMMIT_MESSAGE" value="first pass at mustache and printing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/interpreter/IntermediateRep.py</url>
-          <line>31</line>
+          <line>33</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="tests">
+        <watch expression="self.ir.routines[0][4]" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1747950377544" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$Interpreter.coverage" NAME="Interpreter Coverage Results" MODIFIED="1747959868459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1747962722860" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

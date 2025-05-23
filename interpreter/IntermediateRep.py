@@ -1,14 +1,16 @@
 from enum import Enum
 
-
-
 class IntermediateRep:
     def __init__(self):
         self.routines = []
         self.routines.append([])
     def add_command(self, command):
         self.routines[-1].append(command)
-
+        return len(self.routines[-1])-1
+    def update_argument(self, command_index, new_argument):
+        self.routines[-1][command_index].argument = new_argument
+    def get_top_index(self):
+        return len(self.routines[-1])-1
     # todo: make wrapper object for routine that gives routines names and threadability(?) status
     def push_routine(self):
         self.routines.append([])
@@ -43,8 +45,26 @@ class CommandType(Enum):
     OR = 8,
     CMP = 9
     NOT = 10
+    JMP = 11,
+    JF = 12,
+    #JT = 13,
+    #JZ = 14,
 
-
+commandNameLookup = {
+    CommandType.PUSH: "Push",
+    CommandType.POP: "Pop",
+    CommandType.ADD: "Add",
+    CommandType.SUB: "Subtract",
+    CommandType.MUL: "Multiply",
+    CommandType.DIV: "Divide",
+    CommandType.AND: "And",
+    CommandType.OR: "Or",
+    CommandType.CMP: "Compare",
+    CommandType.NOT: "Not",
+    CommandType.PRINT: "Print",
+    CommandType.JMP: "Jump",
+    CommandType.JF: "Jump If False",
+}
 details = {
     CommandType.PUSH: [
         "Put the above value onto the stack."
@@ -88,7 +108,7 @@ details = {
     CommandType.NOT:[
         "Take the top of the stack and place on A.",
         "Negate the value. True becomes false and false becomes true.",
-        "Place this negated value on the top of the stack."
+        "Place this negated value on the top of the stack.",
         "You will have replaced the top of the stack with it's opposite."
     ],
     CommandType.CMP:[
@@ -96,6 +116,15 @@ details = {
         "Take the top of the stack and place on B.",
         "Compare A and B using the above operator. A is to the left and B is to the right.",
         "Take the result (which should be 'True' or 'False') and place on the top of the stack."
+    ],
+    CommandType.JMP:[
+        "Turn the instructions to the above instruction number. (You will do that instruction next)."
+    ],
+    CommandType.JF:[
+        "Take the top of the stack and place it on A.",
+        "If this value is True, discard the value and continue.",
+        "If this value is False, None, or 0, turn the instructions to the above instruction number. Do that instruction next.",
+        "Discard the tested value on A, if you have not already.",
     ]
 }
 
@@ -138,5 +167,9 @@ class Command:
     def get_pretty_argument(command, argument):
         if command == CommandType.CMP:
              return argumentLookup[argument]
+        if command == CommandType.PUSH:
+            if isinstance(argument,str):
+                return '"'+argument+'"'
+            return str(argument)
         else:
             return argument

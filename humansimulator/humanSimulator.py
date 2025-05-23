@@ -19,6 +19,7 @@ class Frame:
     def execute(self):
         while self.instr < len(self.routine):
             instruction = self.routine[self.instr]
+
             if instruction.command == CommandType.PUSH:
                 self.stack.append(self.routine[self.instr].argument)
             elif instruction.command == CommandType.POP:
@@ -86,6 +87,12 @@ class Frame:
                 n = int(instruction.argument)
                 for i in range(n):
                      self.sim.output += str(self.stack.pop())
+            elif instruction.command == CommandType.JMP:
+                self.instr = int(instruction.argument)
+            elif instruction.command == CommandType.JF:
+                test = self.stack.pop()
+                if not test:
+                    self.instr = int(instruction.argument)
 
             self.instr += 1
 
