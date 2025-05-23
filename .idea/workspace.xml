@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="sort of have function calls working.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/humansimulator/humanSimulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/humansimulator/humanSimulator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/IntermediateRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/IntermediateRep.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/Interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/Interpreter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/compilerTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/compilerTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/printerTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/printerTests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/simulatorTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/simulatorTests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -299,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748012709423</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="sort of have function calls working.">
+      <option name="closed" value="true" />
+      <created>1748019406827</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1748019406827</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -344,6 +347,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Interpreter.coverage" NAME="Interpreter Coverage Results" MODIFIED="1747959868459" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/interpreter" />
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Unittests_for_printerTests.coverage" NAME="Unittests for printerTests Coverage Results" MODIFIED="1748012046440" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748019360159" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748019536831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

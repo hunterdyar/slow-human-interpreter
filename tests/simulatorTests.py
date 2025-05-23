@@ -119,14 +119,17 @@ while i>0:
 
     def test_simple_function_call(self):
         result = execute_get_output("""
+do_something_awesome(0,1,2)
+
 def do_something_awesome(a,b,c):
     print(a)
     print(b)
     print(c)
-print(0)
+print(3)
 
-do_something_awesome(1,2,3)
-print(4)
+do_something_awesome(4,5,6)
+
+print(7)
     """)
-        self.assertEqual("01234", result)
+        self.assertEqual("01234567", result)
 
