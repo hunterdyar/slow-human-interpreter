@@ -27,16 +27,12 @@ class TestPrinter2(unittest.TestCase):
         x = interpret("1+2 > 3*4")
         create_html_file(x)
 
-    def test_jumps(self):
+    def test_functon_defs(self):
         x = interpret("""
-if False:
-    print("banana")
-    print("banana")
-    print("banana")
-else:
-    print("cake")
-    print("cake")
-    print("cake")
-print("done")
+def do_something_awesome(a,b):
+    print(a)
+    print(b)
+
+do_something_awesome(1,2)
 """)
         create_html_file(x)

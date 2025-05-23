@@ -1,13 +1,16 @@
 from interpreter.IntermediateRep import IntermediateRep, CommandType
 
-class HumanSimulator(IntermediateRep):
+class HumanSimulator:
     def __init__(self, intermediate):
         self.ir = intermediate
-        self.frames = [Frame(self,self.ir.routines[0])]
+        self.frames = [Frame(self, self.ir.routine_stack[0])]
         self.output = ""
+        self.globals = []
     def execute(self):
         return self.frames[-1].execute()
-
+    def execute_frame(self, frame):
+        self.frames.append(frame)
+        self.frames[-1].execute()
 
 class Frame:
     def __init__(self, sim, routine):
@@ -15,13 +18,14 @@ class Frame:
         self.routine = routine
         self.instr = 0
         self.stack = []
+        self.locals = []
 
     def execute(self):
-        while self.instr < len(self.routine):
-            instruction = self.routine[self.instr]
+        while self.instr < len(self.routine.instructions):
+            instruction = self.routine.instructions[self.instr]
 
             if instruction.command == CommandType.PUSH:
-                self.stack.append(self.routine[self.instr].argument)
+                self.stack.append(self.routine.instructions[self.instr].argument)
             elif instruction.command == CommandType.POP:
                 self.stack.pop()
             elif instruction.command == CommandType.ADD:
@@ -93,8 +97,25 @@ class Frame:
                 test = self.stack.pop()
                 if not test:
                     self.instr = int(instruction.argument)
-
+            elif instruction.command == CommandType.ROUND:
+                val = self.stack.pop()
+                val = round(val)
+                self.stack.append(val)
+            elif instruction.command == CommandType.ENTERFRAME:
+                name = instruction.argument[0]
+                local_count = int(instruction.argument[1])
+                new_frame = Frame(self.sim,self.sim.ir.routines[name])
+                for x in range(local_count):
+                    new_frame.locals.append(self.stack.pop())
+                self.sim.execute_frame(new_frame)
+            elif instruction.command == CommandType.PUSHLOCAL:
+                local_id = int(instruction.argument)
+                self.stack.append(self.locals[local_id])
+            elif instruction.command == CommandType.PUSHGLOBAL:
+                global_id = int(instruction.argument)
+                self.stack.append(self.sim.globals[global_id])
             self.instr += 1
+
 
         # executing done?
         if len(self.stack) == 0:

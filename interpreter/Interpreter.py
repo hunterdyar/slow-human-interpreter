@@ -10,6 +10,7 @@ def interpret(source: str) -> IntermediateRep:
     return ir
 
 class Visitor(ast.NodeVisitor):
+    use_globals_stack = []
     break_command_stack = []
     def __init__(self, ir: IntermediateRep):
         self.ir = ir
@@ -17,9 +18,6 @@ class Visitor(ast.NodeVisitor):
     def visit_Constant(self, node):
         v = node.value
         self.ir.add_command(Command(CommandType.PUSH, v))
-
-    def visit_FunctionDef(self,node):
-        self.generic_visit(node)
 
     # noinspection PyTypeChecker
     def visit_BinOp(self, node):
@@ -41,7 +39,14 @@ class Visitor(ast.NodeVisitor):
         self.ir.add_command(Command(command_type))
     def visit_Name(self, node):
         # determine if this is a local or a global
-        print(node.id)
+        if self.should_use_globals(node.id):
+            # push global!
+            global_index = self.ir.get_global_index(node.id)
+            # self.ir.add_command(Command(CommandType.PUSHGLOBAL))
+        else:
+            local_index = self.ir.get_local_index(node.id)
+            self.ir.add_command(Command(CommandType.PUSHLOCAL, local_index))
+
         self.generic_visit(node)
 
     def visit_Compare(self, node):
@@ -126,16 +131,76 @@ class Visitor(ast.NodeVisitor):
         raise Exception("imports are not allowed! get out of here with that.")
     def visit_Invert(self, node):
         raise Exception("bitwise invert (~) is not supported, because this machine does not use bits.")
-    def visit_Call(self, node):
+    def visit_Global(self, node):
+       for name in node.names:
+           self.use_globals_stack[-1].append(name)
+    ## not a pythonAST, just our own way to move builtins to their own place.
+    ## returns true if the node is handled, false if it wasn't.
+    def visit_builtin(self, node):
         func_name = node.func.id
-        # put all args on stack
+        arg_count = len(node.args)
+        if func_name == "print":
+            node.args.reverse()
+            for arg in node.args:
+                self.visit(arg)
+            self.ir.add_command(Command(CommandType.PRINT, arg_count))
+            return True
+        if func_name == "round":
+            self.visit(node.args[0])
+            self.ir.add_command(Command(CommandType.ROUND))
+        return False
+    def visit_arg(self, node):
+        self.visit(node.arg)
+
+    def visit_Call(self, node):
+        if self.visit_builtin(node):
+            return
+
+        func_name = node.func.id
+
+        # put all args on stack in reverse order.
         node.args.reverse()
         for arg in node.args:
             self.visit(arg)
-        count = len(node.args)
-        if func_name == "print":
-            self.ir.add_command(Command(CommandType.PRINT, count))
-        #else.... uh...
+
+        ## push a frame of name (get other instruction booklet)
+        self.ir.add_command(Command(CommandType.ENTERFRAME, (func_name, len(node.args))))
+        # move from old stack to locals.
+
+
+    def visit_FunctionDef(self, node):
+        self.use_globals_stack.append(set())
+        self.ir.push_routine(node.name)
+
+        # read this one out loud! (node.args contains args, defaults, kw_defaults, posonlyargs, etc). normal args, args, contains args objects with annotations and such
+        for arg in node.args.args:
+            self.ir.routine_stack[-1].add_local(arg.arg)
+
+        # python function calls are complicated.
+        if node.args.vararg:
+            raise Exception("Var argnot supported.")
+        if node.args.kwarg:
+            raise Exception("Keyword args not supported.")
+        if len(node.args.defaults) > 0:
+            raise Exception("Default args not supported.")
+        if len(node.args.posonlyargs) > 0:
+            raise Exception("position only arguments not supported.")
+
+        for expr in node.body:
+            self.visit(expr)
+
+        # how do we handle returns? i guess we... don't? returns just pop the frame...
+        # can we check if all branches are handled before appending the "leave frame" command if it will never be hit?
+
+        self.ir.pop_routine()
+        self.use_globals_stack.pop()
+
+
+    def should_use_globals(self, id):
+        for scopes in self.use_globals_stack:
+            if id in scopes:
+                return True
+        return False
 
 
 def operator_type_to_command_type(op: ast.operator | ast.boolop) -> CommandType:

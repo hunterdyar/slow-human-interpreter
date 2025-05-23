@@ -108,11 +108,25 @@ else:
 
 # this will fail until I get variable assignment done, lol.
     def test_while(self):
-            result = execute_get_output("""
+        result = execute_get_output("""
 i = 5
 print("-")
 while i>0:
     print(i)
     i = i-1
     """)
-            self.assertEqual("-54321", result)
+        self.assertEqual("-54321", result)
+
+    def test_simple_function_call(self):
+        result = execute_get_output("""
+def do_something_awesome(a,b,c):
+    print(a)
+    print(b)
+    print(c)
+print(0)
+
+do_something_awesome(1,2,3)
+print(4)
+    """)
+        self.assertEqual("01234", result)
+

@@ -5,6 +5,15 @@ class Routine:
         self.name = name
         self.instructions = []
         self.argumentCount = 0
+        self.locals = {}
+    def has_local(self, id) -> (bool, int):
+        if self.locals.keys().__contains__(id):
+            return self.locals[id]
+        else:
+            return False
+    def add_local(self, local_id):
+        self.locals[local_id] = len(self.locals)
+
     def __str__(self):
         return "Routine(%s)" % self.name + "\n" + str(len(self.instructions))
     def __repr__(self):
@@ -12,45 +21,64 @@ class Routine:
 
 class IntermediateRep:
     def __init__(self):
-        self.routines = []
-        self.routines.append(Routine("main"))
+        self.routines = {}
+        self.routine_stack = []
+        self.routine_stack.append(Routine("main"))
 
     def add_command(self, command):
-        self.routines[-1].instructions.append(command)
-        return len(self.routines[-1].instructions) - 1
+        self.routine_stack[-1].instructions.append(command)
+        return len(self.routine_stack[-1].instructions) - 1
 
     def update_argument(self, command_index, new_argument):
-        self.routines[-1].instructions[command_index].argument = new_argument
+        self.routine_stack[-1].instructions[command_index].argument = new_argument
 
     def get_top_index(self):
-        return len(self.routines[-1].instructions) - 1
+        return len(self.routine_stack[-1].instructions) - 1
 
     # todo: make wrapper object for routine that gives routines names and threadability(?) status
-    def push_routine(self):
-        self.routines.append([])
+    def push_routine(self, routine_id):
+        self.routine_stack.append(Routine(routine_id))
 
     def get_top_routine_id(self) -> int:
-        return len(self.routines) - 1
+        return len(self.routine_stack) - 1
 
     def pop_routine(self):
-        self.routines.pop()
+        # save our defined temp area stack of definitions to a lookup table.
+        # todo: this odd code is a reflection of how i wrote this, and could be refactored such that IntermediateRep doens't have any temporary objects floating around.
+        # like how the break and local stuff is over in Interpreter...
+        r = self.routine_stack.pop()
+        self.routines[r.name] = r
+
+    def get_routine(self, routine_id):
+        for r in self.routine_stack:
+            if r.routine_id == routine_id:
+                return r
+        raise Exception("Routine "+ routine_id +" not found")
 
     def __str__(self):
-        return str(self.routines[0])
+        return str(self.routine_stack[0])
 
     def __repr__(self):
-        return str(self.routines[0])
+        return str(self.routine_stack[0])
 
     def get_pretty_object(self):
         out = {"instructions": []}
         num = 1 # the first command is 1 lol, lol
-        out["routineID"] = self.routines[0].name
-        for command in self.routines[0].instructions:
+        out["routineID"] = self.routine_stack[0].name
+        for command in self.routine_stack[0].instructions:
             out["instructions"].append(command.get_pretty_object(num))
             num += 1
 
         return out
 
+    def get_global_index(self, id):
+        return self.routines[0].get_local_index(id)
+    def get_local_index(self, id):
+        # python uses globals, not punch-through locals...right?
+        if id in self.routine_stack[-1].locals:
+            return self.routine_stack[-1].locals[id]
+
+        raise Exception("Variable name "+ id +" not found")
 
 class CommandType(Enum):
     PRINT = 0,
@@ -66,6 +94,10 @@ class CommandType(Enum):
     NOT = 10
     JMP = 11,
     JF = 12,
+    ROUND = 13
+    ENTERFRAME = 14
+    PUSHLOCAL = 15
+    PUSHGLOBAL = 16
     #JT = 13,
     #JZ = 14,
 
@@ -84,6 +116,10 @@ command_name_lookup = {
     CommandType.PRINT: "Print",
     CommandType.JMP: "Jump",
     CommandType.JF: "Jump If False",
+    CommandType.ROUND: "Round",
+    CommandType.ENTERFRAME: "Start Procedure",
+    CommandType.PUSHLOCAL: "Push Frame Local",
+    CommandType.PUSHGLOBAL: "Push Global Variable",
 }
 details = {
     CommandType.PUSH: [
@@ -145,6 +181,24 @@ details = {
         "If this value is <strong>True</strong>, a non-zero value, or a non-empty set, discard the value and continue.",
         "If this value is <strong>False</strong>, <strong>None</strong>, or <strong>0</strong>, flip to the  <span class=\"argument\">above instruction number</span>. Do that instruction next.",
         "Discard the tested value on A, if you have not already.",
+    ],
+    CommandType.ROUND:[
+        "Take the top of <span class=\"stack\">the stack</span> and place it on A.",
+        "Round the value to the nearest whole number.",
+        "Place this new value on top of the stack."
+    ],
+    CommandType.ENTERFRAME:[
+        "Add a new Frame on top the current one, slightly to the right, covering up the locals, but leaving the stack and scratch area visible.",
+        "Write down the <span class=\"argument\">current instruction number</span> in the scratch area to remember it. Booklets may get reused and lose their place."
+        "For the above number of times, move the top item of the (now previous) stack onto the next available spot in locals.",
+        "Find the appropriate instruction booklet with the <span class=\"argument\">above name</span>. Write down the <span class=\"argument\">name</span> of the function in the new frame's scratch area to remember it.",
+        "Start following these instructions at instruction 1."
+    ],
+    CommandType.PUSHLOCAL:[
+        "Copy the value at the above <span class=\"argument\">local number</span> and put it onto  <span class=\"stack\">the stack</span>."
+    ],
+    CommandType.PUSHGLOBAL:[
+        "Copy the value at the above <span class=\"argument\">global number</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
     ]
 }
 argumentLookup = {
