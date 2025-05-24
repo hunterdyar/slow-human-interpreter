@@ -13,6 +13,7 @@ def interpret(source: str) -> IntermediateRep:
 class Visitor(ast.NodeVisitor):
     use_globals_stack = []
     break_command_stack = []
+    continue_command_stack = []
     def __init__(self, ir: IntermediateRep):
         self.ir = ir
 
@@ -102,6 +103,7 @@ class Visitor(ast.NodeVisitor):
 
     def visit_While(self, node):
         self.break_command_stack.append([])
+        self.continue_command_stack.append([])
         start_of_loop = self.ir.get_top_index() + 1
         #+1 ? so... this one we DON'T add the +1 to? i confused myself.
         self.visit(node.test)
@@ -119,6 +121,11 @@ class Visitor(ast.NodeVisitor):
             self.ir.update_argument(break_command_index, exit_point)
         self.break_command_stack.pop()
 
+        # update any continues
+        for continue_command_index in self.continue_command_stack[-1]:
+            self.ir.update_argument(continue_command_index, start_of_loop)
+        self.continue_command_stack.pop()
+
         self.ir.update_argument(cond_jump_index, exit_point)
 
     def visit_Break(self, node):
@@ -126,6 +133,12 @@ class Visitor(ast.NodeVisitor):
             raise Exception("not inside of a loop where we support break commands. (while?)")
         self.ir.add_command(Command(CommandType.JMP, -1))
         self.break_command_stack[-1].append(self.ir.get_top_index())
+
+    def visit_Continue(self, node):
+        if len(self.continue_command_stack) == 0:
+            raise Exception("not inside of a loop where we support continue statements. (while?)")
+        self.ir.add_command(Command(CommandType.JMP, -1))
+        self.continue_command_stack[-1].append(self.ir.get_top_index())
     # throwing down some exceptions so we can start to connect the dots on what subset of python we will want to support.
     # function calls and conditionals before I start worrying about this lol.
 

@@ -143,6 +143,19 @@ print("-")
             """)
         self.assertEqual("-543-", result)
 
+    def test_while_continue(self):
+        result = execute_get_output("""
+i = 5
+print("-")
+while i > 0:
+    i = i-1
+    if i == 3:
+        continue
+    print(i)
+print("-")
+                """)
+        self.assertEqual("-4210-", result)
+
     def test_simple_function_call(self):
         result = execute_get_output("""
 do_something_awesome(0,1,2)
