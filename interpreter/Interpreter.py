@@ -197,7 +197,7 @@ class Visitor(ast.NodeVisitor):
             self.visit(arg)
 
         ## push a frame of name (get other instruction booklet)
-        self.ir.add_command(Command(CommandType.ENTERFRAME, (func_name, len(node.args))))
+        self.ir.add_command(Command(CommandType.ENTERFRAME, func_name))
         # move from old stack to locals.
 
     def visit_FunctionDef(self, node):
@@ -205,9 +205,10 @@ class Visitor(ast.NodeVisitor):
         self.ir.push_routine(node.name)
 
         # read this one out loud! (node.args contains args, defaults, kw_defaults, posonlyargs, etc). normal args, args, contains args objects with annotations and such
-        for arg in node.args.args:
-            self.ir.routine_stack[-1].add_local(arg.arg)
-
+        if len(node.args.args) >0:
+            for arg in node.args.args:
+                self.ir.routine_stack[-1].add_local(arg.arg)
+            self.ir.add_command(Command(CommandType.LOADFRAME, len(node.args.args)))
         # python function calls are complicated.
         if node.args.vararg:
             raise Exception("Var argnot supported.")

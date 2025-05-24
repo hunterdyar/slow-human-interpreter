@@ -120,10 +120,11 @@ class CommandType(Enum):
     JF = 12,
     ROUND = 13
     ENTERFRAME = 14
-    PUSHLOCAL = 15
-    SETLOCAL = 16
-    PUSHGLOBAL = 17
-    SETGLOBAL = 18
+    LOADFRAME = 15
+    PUSHLOCAL = 16
+    SETLOCAL = 17
+    PUSHGLOBAL = 18
+    SETGLOBAL = 19
     #JT = 13,
     #JZ = 14,
 
@@ -148,6 +149,7 @@ command_name_lookup = {
     CommandType.SETLOCAL: "Set Local Variable",
     CommandType.PUSHGLOBAL: "Get Global Variable",
     CommandType.SETGLOBAL: "Set Global Variable",
+    CommandType.LOADFRAME: "Load Locals",
 }
 details = {
     CommandType.PUSH: [
@@ -216,14 +218,16 @@ details = {
         "Place this new value on top of the stack."
     ],
     CommandType.ENTERFRAME:[
-        "Add a new Frame on top the current one, slightly to the right, covering up the locals, but leaving the stack and scratch area visible.",
-        "Write down the <span class=\"argument\">current instruction number</span> in the scratch area to remember it. Booklets may get reused and lose their place."
+        "Add a new Frame on top the current one. Note the <span class=\"argument\">name of the function</span> on the frame.",
+        "Write down the current instruction number (this one) in the scratch area."
+        "Find the instruction booklet for the <span class=\"argument\">above name</span>.",
+        "Begin following those instructions at instruction 1."
+    ],
+    CommandType.LOADFRAME: [
         "For the above number of times, move the top item of the (now previous) stack onto the next available spot in locals.",
-        "Find the appropriate instruction booklet with the <span class=\"argument\">above name</span>. Write down the <span class=\"argument\">name</span> of the function in the new frame's scratch area to remember it.",
-        "Start following these instructions at instruction 1."
     ],
     CommandType.PUSHLOCAL:[
-        "Copy the value at the above <span class=\"argument\">local number</span> and put it onto  <span class=\"stack\">the stack</span>."
+        "Copy the value at the above <span class=\"argument\">local number</span> and put it onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.SETLOCAL:[
         "If the above numbered local has a value, discard it.",
