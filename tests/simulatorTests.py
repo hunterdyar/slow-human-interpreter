@@ -74,16 +74,18 @@ class TestSimulator(unittest.TestCase):
         result = execute_get_output("""
 if False:
   print("banana")
+print("cake")
 """)
-        self.assertEqual("", result)
+        self.assertEqual("cake", result)
 
         result = execute_get_output("""
 if False:
-          print("banana")
+    print("banana")
 else:
     print("cheese")
+print("cake")
 """)
-        self.assertEqual("cheese", result)
+        self.assertEqual("cheesecake", result)
 
         result = execute_get_output("""
 if True:
@@ -106,6 +108,16 @@ else:
 """)
         self.assertEqual("cake", result)
 
+    def test_assign(self):
+        result = execute_get_output("""
+i = 5
+j = 10
+i = 20 + i
+k = i + j
+print(k+i)
+""")
+        self.assertEqual("60", result)
+
 # this will fail until I get variable assignment done, lol.
     def test_while(self):
         result = execute_get_output("""
@@ -117,6 +129,19 @@ while i>0:
 print("-")
     """)
         self.assertEqual("-54321-", result)
+
+    def test_while_break(self):
+        result = execute_get_output("""
+i = 5
+print("-")
+while i > 0:
+    print(i)
+    if i == 3:
+        break
+    i = i-1
+print("-")
+            """)
+        self.assertEqual("-543-", result)
 
     def test_simple_function_call(self):
         result = execute_get_output("""
@@ -134,3 +159,25 @@ print(7)
     """)
         self.assertEqual("01234567", result)
 
+    def test_globals(self):
+        result = execute_get_output("""
+c = 100
+def no_glob(a,b):
+    c = a+b
+
+no_glob(4,5)
+
+print(c)
+""")
+        self.assertEqual("100", result)
+        result = execute_get_output("""
+c = 100
+def glob(a,b):
+    global c
+    c = a+b
+
+glob(4,5)
+
+print(c)
+""")
+        self.assertEqual("9", result)

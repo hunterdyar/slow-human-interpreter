@@ -21,8 +21,14 @@ class Frame:
         self.locals = []
 
     def execute(self):
+        loop_count = 0
         while self.instr < len(self.routine.instructions):
             instruction = self.routine.instructions[self.instr]
+            loop_count += 1
+            if len(self.stack) > 512:
+                raise Exception("Stack Overflow Exception")
+            if loop_count > 100000:
+                raise Exception("Execution limit exceeded (infinite loop?)")
 
             if instruction.command == CommandType.PUSH:
                 self.stack.append(self.routine.instructions[self.instr].argument)
@@ -93,10 +99,12 @@ class Frame:
                      self.sim.output += str(self.stack.pop())
             elif instruction.command == CommandType.JMP:
                 self.instr = int(instruction.argument)
+                continue
             elif instruction.command == CommandType.JF:
                 test = self.stack.pop()
                 if not test:
                     self.instr = int(instruction.argument)
+                    continue
             elif instruction.command == CommandType.ROUND:
                 val = self.stack.pop()
                 val = round(val)

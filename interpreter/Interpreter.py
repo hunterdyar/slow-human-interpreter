@@ -102,7 +102,7 @@ class Visitor(ast.NodeVisitor):
 
     def visit_While(self, node):
         self.break_command_stack.append([])
-        start_of_loop = self.ir.get_top_index()
+        start_of_loop = self.ir.get_top_index() + 1
         #+1 ? so... this one we DON'T add the +1 to? i confused myself.
         self.visit(node.test)
         cond_jump_index = self.ir.add_command(Command(CommandType.JF, -1))
@@ -112,7 +112,7 @@ class Visitor(ast.NodeVisitor):
         # and back to the top!
         self.ir.add_command(Command(CommandType.JMP, start_of_loop))
         # or, skip that and back up.
-        exit_point = self.ir.get_top_index()
+        exit_point = self.ir.get_top_index() + 1
 
         # update the breaks
         for break_command_index in self.break_command_stack[-1]:
@@ -153,7 +153,7 @@ class Visitor(ast.NodeVisitor):
         raise Exception("bitwise invert (~) is not supported, because this machine does not use bits.")
     def visit_Global(self, node):
        for name in node.names:
-           self.use_globals_stack[-1].append(name)
+           self.use_globals_stack[-1].add(name)
     ## not a pythonAST, just our own way to move builtins to their own place.
     ## returns true if the node is handled, false if it wasn't.
     def visit_builtin(self, node):
@@ -186,7 +186,6 @@ class Visitor(ast.NodeVisitor):
         ## push a frame of name (get other instruction booklet)
         self.ir.add_command(Command(CommandType.ENTERFRAME, (func_name, len(node.args))))
         # move from old stack to locals.
-
 
     def visit_FunctionDef(self, node):
         self.use_globals_stack.append(set())
