@@ -48,7 +48,6 @@ class Visitor(ast.NodeVisitor):
         else:
             local_index = self.ir.get_local_index(node.id)
             self.ir.add_command(Command(CommandType.PUSHLOCAL, local_index))
-
         self.generic_visit(node)
 
     def visit_Assign(self, node):
@@ -72,8 +71,6 @@ class Visitor(ast.NodeVisitor):
             local_index = self.ir.get_or_set_local_index(target)
             self.ir.add_command(Command(CommandType.SETLOCAL, local_index))
 
-
-
     def visit_Compare(self, node):
         if len(node.comparators) != 1:
             raise Exception("Compare with more/less than 2 arguments (e.g. 1 < 2 < 3) not currently supported.")
@@ -81,7 +78,6 @@ class Visitor(ast.NodeVisitor):
         self.visit(node.left)
         cmp_name = operator_to_compare_name(node.ops[0])
         self.ir.add_command(Command(CommandType.CMP, cmp_name))
-
     def visit_If(self, node):
         has_else = len(node.orelse) > 0
         self.visit(node.test)
@@ -224,10 +220,14 @@ class Visitor(ast.NodeVisitor):
 
         # how do we handle returns? i guess we... don't? returns just pop the frame...
         # can we check if all branches are handled before appending the "leave frame" command if it will never be hit?
-
+        self.ir.add_command(Command(CommandType.EXITFRAME))
         self.ir.pop_routine()
         self.use_globals_stack.pop()
 
+    def visit_Return(self, node):
+        self.visit(node.value)
+        self.ir.add_command(Command(CommandType.UNLOADFRAME,1))
+        self.ir.add_command(Command(CommandType.EXITFRAME))
 
     def should_use_globals(self, id):
         if len(self.ir.routine_stack) == 1:

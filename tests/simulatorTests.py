@@ -5,11 +5,11 @@ from interpreter.Interpreter import interpret
 
 def execute(code: str) -> object:
     x = interpret(code)
-    sim = HumanSimulator(x)
+    sim = HumanSimulator(x, True)
     return sim.execute()
 def execute_get_output(code: str) -> object:
     x = interpret(code)
-    sim = HumanSimulator(x)
+    sim = HumanSimulator(x, False)
     sim.execute()
     return sim.output
 
@@ -194,3 +194,11 @@ glob(4,5)
 print(c)
 """)
         self.assertEqual("9", result)
+
+    def test_return(self):
+        result = execute_get_output("""
+def addup(a,b,c):
+    return a+b+c
+print(addup(1,2,3))
+    """)
+        self.assertEqual("6", result)

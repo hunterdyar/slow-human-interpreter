@@ -105,6 +105,7 @@ class IntermediateRep:
 
 
 class CommandType(Enum):
+
     PRINT = 0,
     PUSH = 1,
     POP = 2,
@@ -125,6 +126,8 @@ class CommandType(Enum):
     SETLOCAL = 17
     PUSHGLOBAL = 18
     SETGLOBAL = 19
+    EXITFRAME = 20
+    UNLOADFRAME = 21
     #JT = 13,
     #JZ = 14,
 
@@ -240,6 +243,14 @@ details = {
         "If the above numbered global has a value, discard it.",
         "Put the top value of <span class=\"stack\">the stack</span> and place it on the heap, on the above <span class=\"argument\">global number</span>."
     ],
+    CommandType.UNLOADFRAME:[
+        "For the above number of times, move the top item of the stack onto the previous stack.",
+    ],
+    CommandType.EXITFRAME:[
+        "Discard all cards on this frames stack and locals.",
+        "Remove the frame and place to the side."
+        "Continue the previous frame's instructions at the (noted) instruction number."
+    ]
 }
 argumentLookup = {
     "Eq": "Is Equal To",

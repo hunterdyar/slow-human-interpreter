@@ -1,17 +1,19 @@
 from interpreter.IntermediateRep import IntermediateRep, CommandType
 
 class HumanSimulator:
-    def __init__(self, intermediate):
+    def __init__(self, intermediate, use_implicit_return = False):
         self.ir = intermediate
-        self.frames = [Frame(self, self.ir.routines["main"])]
-        self.output = ""
-        self.globals = []
         self.stack = []
+        self.globals = []
+        self.output = ""
+        self.frames = [Frame(self, self.ir.routines["main"])]
+        ## main frame should always return value
+        self.frames[0].implicit_return = use_implicit_return
     def execute(self):
-        return self.frames[-1].execute()
+        return self.frames[0].execute()
     def execute_frame(self, frame):
         self.frames.append(frame)
-        self.frames[-1].execute()
+        return self.frames[-1].execute()
 
 class Frame:
     def __init__(self, sim, routine):
@@ -19,9 +21,14 @@ class Frame:
         self.routine = routine
         self.instr = 0
         self.locals = []
+        self.return_val = None
+        # mark the position of the stack. The paper version does this by having the stack start to the side of the current stack, or by inserting a marker (that's what we will do for the sim)
+        self.starting_stack_len = len(self.sim.stack)
+        self.implicit_return = False
 
     def execute(self):
         loop_count = 0
+
         while self.instr < len(self.routine.instructions):
             instruction = self.routine.instructions[self.instr]
             loop_count += 1
@@ -114,9 +121,12 @@ class Frame:
                 case CommandType.ENTERFRAME:
                     name = instruction.argument
                     new_frame = Frame(self.sim,self.sim.ir.routines[name])
-                    self.sim.execute_frame(new_frame)
+                    res = self.sim.execute_frame(new_frame)
+                    if res is not None:
+                        self.sim.stack.append(res)
                 case CommandType.LOADFRAME:
                     local_count = int(instruction.argument)
+                    self.starting_stack_len -= local_count
                     for x in range(local_count):
                         s = self.sim.stack.pop()
                         self.locals.append(s)
@@ -140,16 +150,23 @@ class Frame:
                     while len(self.sim.globals) < global_id+1:
                         self.sim.globals.append(None)
                     self.sim.globals[global_id] = self.sim.stack.pop()
+                case CommandType.UNLOADFRAME:
+                    self.return_val = self.sim.stack.pop()
+                case CommandType.EXITFRAME:
+                    self.clean_stack()
+                    return self.return_val
                 case _:
                     raise Exception("Runtime (simulator) error. Unknown command '" + str(instruction.command) + "'")
             self.instr += 1
 
+        if self.implicit_return:
+            print("Using implicit return. This is a testing feature that will be removed for deployment.")
+            if len(self.sim.stack) > 0:
+                self.return_val = self.sim.stack.pop()
 
-        # executing done?
-        if len(self.sim.stack) == 0:
-            return None
-        else:
-            top = self.sim.stack.pop()
-            return top
+        self.clean_stack()
+        return self.return_val
 
-
+    def clean_stack(self):
+        while len(self.sim.stack) > self.starting_stack_len:
+            self.sim.stack.pop()
