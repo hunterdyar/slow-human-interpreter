@@ -1,4 +1,4 @@
-from interpreter.IntermediateRep import IntermediateRep, CommandType
+from interpreter.IntermediateRep import CommandType
 
 class HumanSimulator:
     def __init__(self, intermediate, use_implicit_return = False):

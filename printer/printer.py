@@ -3,10 +3,10 @@ import pathlib
 import chevron
 
 from interpreter.IntermediateRep import IntermediateRep
-
+from printer.PrintObjectFactory import get_pretty_ir
 
 def render(ir: IntermediateRep):
-    element = ir.get_pretty_object()
+    element = get_pretty_ir(ir)
     dir = pathlib.Path(__file__).parent.resolve()
     ipf = dir.joinpath("instructionpages.mustache")
     with open(ipf, 'r') as instruction_pages_template:
