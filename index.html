@@ -15,6 +15,51 @@
             {
                 border: 1px solid red;
             }
+            section{
+                width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+                border: 1px solid black;
+                padding-right: .5em;
+                padding-left: .5em;
+                padding-bottom: .5em;
+                margin-bottom: 1em;
+            }
+            section.main{
+                margin-top: 2em;
+
+                display: grid;
+                grid-template-columns: 50% 50%;
+                grid-template-areas:
+                    "hd hd"
+                    "text text"
+                    "testbutton printbutton"
+                    "testResult testResult";
+                grid-row-gap: 1em;
+
+                grid-column-gap: .25em;
+            }
+            .header{
+               grid-area: hd;
+            }
+            h1, h2, h3, h4, h5, h6{
+                text-align: center;
+            }
+            textarea{
+                grid-area: text;
+            }
+            .testButton{
+                grid-area: testbutton;
+            }
+            .printButton{
+                grid-area: printbutton;
+            }
+            #testResult{
+                grid-area: testResult;
+            }
+            button{
+                width: 100%
+            }
         </style>
         <script type="module">
             const loading = document.getElementById('loading');
@@ -23,22 +68,33 @@
             loading.showModal();
         </script>
 
-
       <title>Slow Human Interpreter</title>
   </head>
   <body>
   <dialog id="loading">
             <h1>Loading...</h1>
     </dialog>
+  <section class="main">
+      <div class="header">
   <h1>Slow Human Interpreter</h1>
+          </div>
+            <textarea id="source_field">a = 1+2+3
+print(a)</textarea>
+      <div class="testButton">
+                  <button id="test" py-click="test_form">test</button>
+      </div>
+      <div class="printButton">
+        <button id="print" py-click="submit_form">print instructions</button>
+          </div>
+        <div id ="testResult">
+            hi
+        </div>
 
-        <label>
-            <textarea id="source_field">1+2+3</textarea>
-        </label>
-  <br />
-        <button id="test" py-click="test_form">test</button>
-        <button id="submit" py-click="submit_form">print instructions</button>
-        <div id ="testResult"></div>
+      </section>
+  <section class="about">
+      <h3>About</h3>
+      <p>This is a computer, but instead of computer do the compute, human do the compute.<p>
+  </section>
     <script>
         function printHTMLPage(code){
             var printwin = window.open('','','toolbar=0,scrollbars=0,status=0,dir=ltr');

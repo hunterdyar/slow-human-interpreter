@@ -4,20 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="assignment, gets for local and globals, add/remove from stack, while loops fixed.">
-      <change afterPath="$PROJECT_DIR$/js/print.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pyscript.json" afterDir="false" />
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="pyscript based web runner.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/humansimulator/humanSimulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/humanSimulator/humanSimulator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/engine/animachine.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/webwrapper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/engine/compiler.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/printer/PrintObjectFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/PrintObjectFactory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/printer/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/templates/instructionpages.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/printer/printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/Printer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/printerTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/printerTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/simulatorTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/simulatorTests.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748116458891</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="pyscript based web runner.">
+      <option name="closed" value="true" />
+      <created>1748375358527</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1748375358527</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,7 +410,8 @@
     <MESSAGE value="continue statement in while loops" />
     <MESSAGE value="npattern matching instead of ifelif" />
     <MESSAGE value="return statements" />
-    <option name="LAST_COMMIT_MESSAGE" value="return statements" />
+    <MESSAGE value="pyscript based web runner." />
+    <option name="LAST_COMMIT_MESSAGE" value="pyscript based web runner." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -421,12 +419,6 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/printer/Printer.py</url>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/index.html</url>
-          <line>67</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
