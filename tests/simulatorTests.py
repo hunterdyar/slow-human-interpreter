@@ -1,6 +1,6 @@
 import unittest
 
-from humansimulator.humanSimulator import HumanSimulator
+from humanSimulator.humanSimulator import HumanSimulator
 from interpreter.Interpreter import interpret
 
 def execute(code: str) -> object:

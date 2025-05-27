@@ -1,0 +1,11 @@
+{
+  "packages": ["pathlib", "chevron"],
+  "files": {
+    "./templates/instructionpages.mustache": "templates/instructionpages.mustache",
+    "./interpreter/IntermediateRep.py": "interpreter/IntermediateRep.py",
+    "./printer/PrintObjectFactory.py": "PrintObjectFactory.py",
+    "./interpreter/Interpreter.py": "interpreter/Interpreter.py",
+    "./printer/Printer.py": "printer/Printer.py",
+    "./humanSimulator/humanSimulator.py": "humanSimulator/humanSimulator.py"
+  }
+}

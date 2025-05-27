@@ -21,6 +21,7 @@ command_name_lookup = {
     CommandType.PUSHGLOBAL: "Get Global Variable",
     CommandType.SETGLOBAL: "Set Global Variable",
     CommandType.LOADFRAME: "Load Locals",
+    CommandType.EXITFRAME: "Exit Procedure",
 }
 details = {
     CommandType.PUSH: [

@@ -1,7 +1,6 @@
 import unittest
-
 from interpreter.Interpreter import interpret
-from printer.printer import create_html_file
+from printer.Printer import create_html_file
 
 
 class TestPrinter(unittest.TestCase):

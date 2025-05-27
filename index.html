@@ -1,23 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Test</title>
-</head>
-<body>
-<h1>Slow Human Interpreter</h1>
-<form>
-    <label>
-        <textarea id="code">1+2+3</textarea>
-    </label>
-    <input type="submit" value="Run" id="submit"/>
-</form>
-<hr >
-<ol id="instructionList">
-</ol>
-<hr />
-<div id="machine"></div>
-<script type="module" src="./js/main.js"></script>
-</body>
+<html>
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <link rel="stylesheet" href="https://pyscript.net/releases/2025.5.1/core.css">
+        <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
+        <script type="module" src="./js/print.min.js"></script>
+       <style>
+            #loading { outline: none; border: none; background: transparent }
+            #test-result{
+                border: 1px solid black;
+            }
+            #test-error
+            {
+                border: 1px solid red;
+            }
+        </style>
+        <script type="module">
+            const loading = document.getElementById('loading');
+            addEventListener('py:ready', () => {loading.close()
+            console.log("loaded")});
+            loading.showModal();
+        </script>
 
+
+      <title>Slow Human Interpreter</title>
+  </head>
+  <body>
+  <dialog id="loading">
+            <h1>Loading...</h1>
+    </dialog>
+  <h1>Slow Human Interpreter</h1>
+
+        <label>
+            <textarea id="source_field">1+2+3</textarea>
+        </label>
+  <br />
+        <button id="test" py-click="test_form">test</button>
+        <button id="submit" py-click="submit_form">print instructions</button>
+        <div id ="testResult"></div>
+    <script>
+        function printHTMLPage(code){
+            var printwin = window.open('','','toolbar=0,scrollbars=0,status=0,dir=ltr');
+            printwin.document.write(code)
+            printwin.focus()
+            printwin.print()
+            printwin.close()
+        }
+        const testResDiv = document.getElementById("testResult")
+
+        function testResult(res, isSuccess){
+            clearResult()
+            if(isSuccess) {
+                console.log(res)
+                testResDiv.classList.remove("test-error")
+                testResDiv.classList.add("test-result")
+                testResDiv.innerText = res
+            }else{
+                console.error(res)
+                testResDiv.classList.remove("test-result")
+                testResDiv.classList.add("test-error")
+                testResDiv.innerText = res
+            }
+        }
+        function clearResult(){
+             testResDiv.innerText = ""
+            let ers = document.getElementsByClassName("py-error");
+            for (let i = 0; i < ers.length; i++) {
+                ers[i].remove()
+            }
+        }
+    </script>
+      <script type="py" src="./web/webwrapper.py" config="./pyscript.json"></script>
+  </body>
 </html>
+
