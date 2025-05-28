@@ -96,9 +96,9 @@ print(a)</textarea>
       <p>This is a computer, but instead of computer do the compute, human do the compute.<p>
   </section>
     <script>
-        function printHTMLPage(code){
+        function printHTMLPage(content){
             var printwin = window.open('','','toolbar=0,scrollbars=0,status=0,dir=ltr');
-            printwin.document.write(code)
+            printwin.document.write(content)
             printwin.focus()
             printwin.print()
             printwin.close()

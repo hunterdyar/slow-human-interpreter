@@ -1,14 +1,16 @@
 <html>
 <head>
     <style media="print">
-     @page {
-          size: auto;
-          margin: 0;
+     @page instructions {
+         margin: 0;
+         size: portrait;
+         padding: 0;
        }
     </style>
     <style>
 
         .instruction-container{
+            page: instructions;
             display: grid;
             grid-template-columns: 5in 5in;
             grid-column-gap: .2in;
@@ -55,13 +57,127 @@
             margin-bottom: 0;
         }
         .page{page-break-after: always}
-
 </style>
+<!--    style for frame-->
+    <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    @page frame{
+        margin: 0;
+        size: landscape;
+    }
+    section{
+        page: frame;
+      font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+      margin: auto;
+      padding: 0;
+      width: 11in;
+      height: 8.5in;
+      display: grid;
+      page-break-after: always;
+      page-break-before: always;
+      page-break-inside: avoid;
+
+      grid-template-columns: 30% 55% 15%;
+      grid-template-rows: 40% 30% 30%;
+      grid-template-areas:
+      "ins stack locals"
+      "scratch reg locals"
+      "scratch reg locals";
+      grid-gap: .05in;
+    }
+    .centertext{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    .centertext p{
+      font-size: 24pt;
+    }
+    .toptext{
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    .toptext p{
+      font-size: 16pt;
+    }
+    .cardarea{
+      width: 2.5in;
+      height: 3in;
+
+      margin: auto;
+      border: 2px dashed black;
+      border-radius: .1in;
+    }
+    .meta{
+      border: 2px solid black;
+      border-radius: .5in;
+      justify-self: stretch;
+      align-self: stretch;
+    }
+    .instructions{
+      grid-area: ins;
+      margin-top:.1in;
+      display: inline-block;
+    }
+    .stack{
+      grid-area: stack;
+      justify-self: center;
+      align-self: center;
+    }
+    .locals{
+      grid-area: locals;
+      justify-content: space-around;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: flex-end;
+    }
+    .local{
+      display: inline-block;
+      height: 2.5in;
+      width: 1.5in;
+      border-top: 2px dashed black;
+      border-left: 2px dashed black;
+      border-bottom: 2px dashed black;
+      border-radius: .5in 0 0 .5in;
+      flex-shrink: 1;
+      flex-basis: auto;
+    }
+    .reg{
+      grid-area: reg;
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+    }
+    .regitem{
+      width: 2.5in;
+      height: 3in;
+      align-self: center;
+      border: 2px dashed black;
+      border-radius: .1in;
+    }
+    .scratch{
+      grid-area: scratch;
+    }
+
+  </style>
     </head>
 <body>
     {{# routines}}
         <div class="page">
-        <h1 class="routine-start">{{name}}</h1>
+<!--        <h1 class="routine-start">{{name}}</h1>-->
         <div class="instruction-container">
 
         {{# instructions }}
@@ -90,7 +206,28 @@
 
     {{/routines}}
 
+    {{#frames}}
+        <section class="frame">
+  <div class="instructions meta"><div class="centertext"><p>instructions</p></div></div>
+  <div class="stack">
+      <div class="cardarea centertext"><p>the stack</p></div>
+  </div>
+  <div class="locals">
+    <div class="local"><div class="centertext"> <p>local 0</p></div></div>
+    <div class="local"><div class="centertext"> <p>local 1</p></div></div>
+    <div class="local"><div class="centertext"> <p>local 2</p></div></div>
 
-
+  </div>
+  <div class="scratch meta">
+    <div class="toptext">
+      <p>scratch area</p>
+    </div>
+  </div>
+  <div class="reg meta">
+    <div class="regitem centertext"><p>A</p></div>
+    <div class="regitem centertext"><p>B</p></div>
+  </div>
+</section>
+    {{/frames}}
 </body>
 </html>

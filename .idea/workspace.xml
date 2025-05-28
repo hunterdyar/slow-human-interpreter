@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="pyscript based web runner.">
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="css">
+      <change afterPath="$PROJECT_DIR$/templates/blankFrame.mustache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/printer/PrintObjectFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/PrintObjectFactory.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/printer/Printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/Printer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyscript.json" beforeDir="false" afterPath="$PROJECT_DIR$/pyscript.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/templates/instructionpages.mustache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -29,12 +35,12 @@
     &quot;assignee&quot;: &quot;hunterdyar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/hunterdyar/slow-human-interpreter.git",
-    "accountId": "fcccaa8e-1d66-461f-b29c-b0bcbe62b2c4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hunterdyar/slow-human-interpreter.git&quot;,
+    &quot;accountId&quot;: &quot;fcccaa8e-1d66-461f-b29c-b0bcbe62b2c4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -48,6 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python tests.Python tests for CompilerTests.TestCompiler.executor": "Run",
     "Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor": "Debug",
@@ -232,6 +239,7 @@
       <workItem from="1747924721413" duration="18457000" />
       <workItem from="1748052482821" duration="438000" />
       <workItem from="1748199785265" duration="930000" />
+      <workItem from="1748442134313" duration="8724000" />
     </task>
     <task id="LOCAL-00001" summary="starting a rewrite in python">
       <option name="closed" value="true" />
@@ -385,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748375358527</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="css">
+      <option name="closed" value="true" />
+      <created>1748378978963</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1748378978963</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -411,7 +427,8 @@
     <MESSAGE value="npattern matching instead of ifelif" />
     <MESSAGE value="return statements" />
     <MESSAGE value="pyscript based web runner." />
-    <option name="LAST_COMMIT_MESSAGE" value="pyscript based web runner." />
+    <MESSAGE value="css" />
+    <option name="LAST_COMMIT_MESSAGE" value="css" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

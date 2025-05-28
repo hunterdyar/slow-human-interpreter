@@ -139,6 +139,8 @@ def get_pretty_ir(ir: IntermediateRep):
     out = {"routines": []}
     for routine in reversed(ir.routines.values()):
         out["routines"].append(get_pretty_routine(routine))
+
+    out["frames"] = ["frame"]
     return out
 
 def get_pretty_routine(routine: Routine):

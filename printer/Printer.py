@@ -3,7 +3,7 @@ import chevron
 from PrintObjectFactory import get_pretty_ir
 from interpreter.IntermediateRep import IntermediateRep
 
-def render(ir: IntermediateRep):
+def render(ir: IntermediateRep,options=None):
     element = get_pretty_ir(ir)
     dir = pathlib.Path(__file__).parent.resolve()
     ipf = dir.joinpath("../templates/instructionpages.mustache")
