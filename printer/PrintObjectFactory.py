@@ -22,6 +22,8 @@ command_name_lookup = {
     CommandType.SETGLOBAL: "Set Global Variable",
     CommandType.LOADFRAME: "Load Locals",
     CommandType.EXITFRAME: "Exit Procedure",
+    CommandType.UNLOADFRAME: "Unload From Frame",
+    CommandType.ABORT: "Abort",
 }
 details = {
     CommandType.PUSH: [
@@ -119,6 +121,10 @@ details = {
         "Discard all cards on this frames stack and locals.",
         "Remove the frame and place to the side."
         "Continue the previous frame's instructions at the (noted) instruction number."
+    ],
+    CommandType.ABORT:[
+        "Uh Oh, something has gone wrong! This command means something invalid happened.",
+        "No clue what to do next. Abort!"
     ]
 }
 argumentLookup = {
