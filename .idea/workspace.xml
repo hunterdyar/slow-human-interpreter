@@ -29,12 +29,12 @@
     &quot;assignee&quot;: &quot;hunterdyar&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/hunterdyar/slow-human-interpreter.git",
-    "accountId": "fcccaa8e-1d66-461f-b29c-b0bcbe62b2c4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hunterdyar/slow-human-interpreter.git&quot;,
+    &quot;accountId&quot;: &quot;fcccaa8e-1d66-461f-b29c-b0bcbe62b2c4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -46,70 +46,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for CompilerTests.TestCompiler.executor": "Run",
-    "Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor": "Debug",
-    "Python tests.Python tests for CompilerTests.TestCompiler.test_print.executor": "Debug",
-    "Python tests.Python tests for compilerTests.TestCompiler.executor": "Run",
-    "Python tests.Python tests for compilerTests.TestCompiler.test_add.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter.test_empty.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter.test_jumps.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.test_functon_defs.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.test_jumps.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_add.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_and.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_assign.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_compare.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_div.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_globals.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_if.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_if_elif.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_invert.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_math.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_mult.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_named.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_not.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_or.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_print.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_return.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_simple_function_call.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_sub.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_while.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_while_break.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_while_continue.executor": "Debug",
-    "Python tests.Python tests in CompilerTests.py.executor": "Debug",
-    "Python tests.Python tests in compilerTests.py.executor": "Run",
-    "Python tests.Python tests in simulatorTests.py.executor": "Run",
-    "Python tests.Unittests for printerTests.executor": "Run",
-    "Python tests.Unittests for simulatorTests.TestSimulator.test_globals.executor": "Debug",
-    "Python tests.Unittests for simulatorTests.TestSimulator.test_if.executor": "Run",
-    "Python.Interpreter.executor": "Debug",
-    "Python.scratch.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for CompilerTests.TestCompiler.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for CompilerTests.TestCompiler.test_print.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for compilerTests.TestCompiler.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for compilerTests.TestCompiler.test_add.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter.test_empty.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter.test_jumps.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter2.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter2.test_functon_defs.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter2.test_jumps.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_add.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_and.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_assign.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_compare.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_div.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_globals.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_if.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_if_elif.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_invert.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_math.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_mult.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_named.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_not.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_or.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_print.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_return.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_simple_function_call.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_sub.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_while.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_while_break.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_while_continue.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests in CompilerTests.py.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests in compilerTests.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in simulatorTests.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Unittests for printerTests.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Unittests for simulatorTests.TestSimulator.test_globals.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Unittests for simulatorTests.TestSimulator.test_if.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Interpreter.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python",
-      "HTML"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;,
+      &quot;HTML&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="S:\python\slow-human-interpreter\printer" />
