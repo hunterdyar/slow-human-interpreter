@@ -28,11 +28,13 @@ class TestPrinter2(unittest.TestCase):
 
     def test_functon_defs(self):
         x = interpret("""
-def do_something_awesome(a,b):
+a = 3
+def do_something_awesome(b):
+    global a
     print(a)
     print(b)
 
 
-do_something_awesome(1,2+4)
+do_something_awesome(2+4)
 """)
         create_html_file(x)

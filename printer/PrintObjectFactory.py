@@ -123,11 +123,11 @@ details = {
        "Take the top of <span class=\"stack\">the stack</span> and place it on the <span class=\"argument\">above position number</span>.",
     ],
     CommandType.PUSHGLOBAL:[
-        "Copy the value at the above <span class=\"argument\">global number</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
+        "Copy the value at the above <span class=\"argument\">global position</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.SETGLOBAL:[
-        "If the above numbered global has a value, discard it.",
-        "Put the top value of <span class=\"stack\">the stack</span> and place it on the heap, on the above <span class=\"argument\">global number</span>."
+        "If the above positon global has a value, discard it.",
+        "Put the top value of <span class=\"stack\">the stack</span> and place it on the heap, on the above <span class=\"argument\">global position</span>."
     ],
     CommandType.UNLOADFRAME:[
         "For the above number of times, move the top item of the stack onto the previous stack.",
@@ -161,10 +161,23 @@ def get_pretty_ir(ir: IntermediateRep, options):
     for routine in reversed(ir.routines.values()):
         out["routines"].append(get_pretty_routine(routine))
 
+    uses_globals = any([ins
+                        for r in ir.routines.values()
+                        for ins in r.instructions
+                        if ins.command == CommandType.PUSHGLOBAL or ins.command == CommandType.PUSHLOCAL])
+    # scan IR for checks
+    if uses_globals:
+        options["ir_has_globals"] = True
+
+    #turn on and off output settings
     if options:
         out["frames"] = []
         for option in range(options["frameCount"]):
             out["frames"].append("frame")
+
+        # if has globals AND if exclude-globals
+        if options["ir_has_globals"]:
+            out["globals"].append("global")
     else:
         out["frames"] = ["frame"]
     return out

@@ -1,6 +1,6 @@
 import pathlib
 import chevron
-from PrintObjectFactory import get_pretty_ir
+from printer.PrintObjectFactory import get_pretty_ir
 from interpreter.IntermediateRep import IntermediateRep
 
 def render(ir: IntermediateRep,options=None):
