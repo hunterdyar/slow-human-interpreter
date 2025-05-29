@@ -63,6 +63,31 @@
             button{
                 width: 100%
             }
+            .sep-about{
+                margin-top: 2.5em;
+                margin-bottom: 1em;
+                border-color: lightgray;
+                color: lightgray;
+            }
+            hr.sep-about {
+                max-width: 300px;
+                 width: 60%;
+                overflow: visible; /* For IE */
+                padding: 0;
+                border: none;
+                border-top: medium double #333;
+                color: #333;
+                text-align: center;
+            }
+            hr.sep-about:after {
+                content: "⏿";
+                display: inline-block;
+                position: relative;
+                top: -0.7em;
+                font-size: 1.5em;
+                padding: 0 0.25em;
+                background: white;
+            }
         </style>
         <script type="module">
             const loading = document.getElementById('loading');
@@ -81,7 +106,7 @@
       <div class="header">
   <h1>slow human interpreter</h1>
           </div>
-            <textarea id="source_field">a = 1+2+3
+            <textarea id="source_field" rows="8">a = 1+2+3
 print(a)</textarea>
       <div class="testButton">
                   <button id="test" py-click="test_form">Simulate Human</button>
@@ -94,9 +119,10 @@ print(a)</textarea>
         </div>
 
       </section>
+  <hr class="sep-about"/>
   <section class="about">
       <h3>about</h3>
-      <p>Slow Human Interpreter is a python interpreter, sort of like <a href="https://en.wikipedia.org/wiki/CPython" target="_blank">CPython</a>, <a href="https://pypy.org/" target="_blank">PyPy</a>, or <a href="https://micropython.org/" target="_blank">micropython</a>... but much slower. It runs python code. Well, no it doesn't. Actually it <strong>compiles python into printable instructions for a human to execute by hand</strong>. You have to actually do the computing.<p>
+      <p>Slow Human Interpreter is a python interpreter like <a href="https://en.wikipedia.org/wiki/CPython" target="_blank">CPython</a>, <a href="https://pypy.org/" target="_blank">PyPy</a>, or <a href="https://micropython.org/" target="_blank">micropython</a>... but much slower. It runs python code. Well, no it doesn't. It <strong>compiles python into printable instructions for a human to execute by hand</strong>. You have to actually do the computing.<p>
       <p>The instructions are printed, cut, and arranged. The human performs operations on a stack (of index cards) based system.</p>
       <p><em>It's sort of like setting up a complex board game.</em></p>
       <p>Slow Human Interpreter only supports a very small subset of Python, and no includes or modules.</p>
@@ -109,6 +135,8 @@ print(a)</textarea>
             <p>Plus, it's fun! Well, depending on what code you choose to run. Once this activity stops being magical, and you start to notice that there are not any compiler optimizations, or you start to predict what the instructions will do... then you're learning!</p>
             <p>Lastly, I love that it's real. It's impractical and silly, but it <strong>is</strong> real. As an educator, I could have animated these concepts or relied on my whiteboard. There's something that extra bit satisfying running code that you yourself wrote. (...so long as you didn't choose fibonacci!)</p>
     </section>
+    <hr class="sep-about"/>
+
   <section class="about">
       <p><a href="https://github.com/hunterdyar/slow-human-interpreter" target="_blank">source</a> and technical details. GPL-3.0 License.</p>
       <p>This webpage runs entirely in your browser (via <a href="https://pyscript.net/" target="_blank">PyScript</a>). No information is transferred to a server besides non-ad supported <a href="https://www.goatcounter.com/" target="_blank">analytics</a>, and downloading PyScript from a CDN.</p>
