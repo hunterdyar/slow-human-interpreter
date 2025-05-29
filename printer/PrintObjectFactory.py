@@ -76,20 +76,21 @@ details = {
     ],
     CommandType.PRINT: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
-        "Scream the value of the card on A as loudly as you can.",
+        "Scream the value of the card on A at an appropriately load volume.",
         "Discard A"
     ],
     CommandType.NOT: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Negate the value. True becomes false and false becomes true.",
         "Place this negated value on the top of <span class=\"stack\">the stack</span>.",
-        "You will have replaced the top of <span class=\"stack\">the stack</span> with it's opposite."
+        "Discard A."
     ],
     CommandType.CMP: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Take the top of <span class=\"stack\">the stack</span> and place on B.",
         "Compare A and B using the above operator. A is to the left and B is to the right.",
         "Take the result (which should be 'True' or 'False') and place on the top of <span class=\"stack\">the stack</span>."
+        "Discard A and B."
     ],
     CommandType.JMP: [
         "Instead of flipping to the next instruction. Instead, flip to the <span class=\"argument\">above instruction</span>."
@@ -106,20 +107,20 @@ details = {
         "Place this new value on top of the stack."
     ],
     CommandType.ENTERFRAME:[
-        "Add a new Frame on top the current one. Note the <span class=\"argument\">name of the function</span> on the frame.",
-        "Write down the current instruction number (this one) in the scratch area."
+        "Write down the next instruction number (this one plus one) in the scratch area."
+        "Add a new Frame on top and slightly to the right of the current one. Note the <span class=\"argument\">name of the function</span> on the frame.",
         "Find the instruction booklet for the <span class=\"argument\">above name</span>.",
         "Begin following those instructions at instruction 1."
     ],
     CommandType.LOADFRAME: [
-        "For the above number of times, move the top item of the (now previous) stack onto the next available spot in locals.",
+        "For the above number of times, move the top item of the (now previous) <span class=\"stack\">stack</span>. onto the next available position in locals.",
     ],
     CommandType.PUSHLOCAL:[
-        "Copy the value at the above <span class=\"argument\">local number</span> and put it onto <span class=\"stack\">the stack</span>."
+        "Copy the value at the above <span class=\"argument\">local position number</span> and put it onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.SETLOCAL:[
-        "If the above numbered local has a value, discard it.",
-       "Take the top of <span class=\"stack\">the stack</span> and place it on the above local value.",
+        "If the local at the <span class=\"argument\">above position number</span>, discard it.",
+       "Take the top of <span class=\"stack\">the stack</span> and place it on the <span class=\"argument\">above position number</span>.",
     ],
     CommandType.PUSHGLOBAL:[
         "Copy the value at the above <span class=\"argument\">global number</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
