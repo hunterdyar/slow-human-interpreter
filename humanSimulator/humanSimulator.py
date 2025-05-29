@@ -6,14 +6,20 @@ class HumanSimulator:
         self.stack = []
         self.globals = []
         self.output = ""
+        self.maxFameCount = 0
         self.frames = [Frame(self, self.ir.routines["main"])]
         ## main frame should always return value
         self.frames[0].implicit_return = use_implicit_return
     def execute(self):
+        self.maxFameCount = 1
         return self.frames[0].execute()
     def execute_frame(self, frame):
         self.frames.append(frame)
-        return self.frames[-1].execute()
+        if len(self.frames) > self.maxFameCount:
+            self.maxFameCount = len(self.frames)
+        res= self.frames[-1].execute()
+        self.frames.pop()
+        return res
 
 class Frame:
     def __init__(self, sim, routine):

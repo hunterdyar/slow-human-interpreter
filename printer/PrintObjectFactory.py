@@ -135,15 +135,20 @@ argumentLookup = {
 }
 
 
-def get_pretty_ir(ir: IntermediateRep):
+def get_pretty_ir(ir: IntermediateRep, options):
     out = {"routines": []}
     for routine in reversed(ir.routines.values()):
         out["routines"].append(get_pretty_routine(routine))
 
-    out["frames"] = ["frame"]
+    if options:
+        out["frames"] = []
+        for option in range(options["frameCount"]):
+            out["frames"].append("frame")
+    else:
+        out["frames"] = ["frame"]
     return out
 
-def get_pretty_routine(routine: Routine):
+def get_pretty_routine(routine: Routine, options=None):
     out = {"instructions": [],
             "name": routine.name,
             "localCount": len(routine.locals)}

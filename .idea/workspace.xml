@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="css">
-      <change afterPath="$PROJECT_DIR$/templates/blankFrame.mustache" afterDir="false" />
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="initial frame printing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/humanSimulator/humanSimulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/humanSimulator/humanSimulator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/printer/PrintObjectFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/PrintObjectFactory.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/printer/Printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/Printer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyscript.json" beforeDir="false" afterPath="$PROJECT_DIR$/pyscript.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/blankFrame.mustache" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/templates/instructionpages.mustache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/webwrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/webwrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +31,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -52,71 +61,71 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for CompilerTests.TestCompiler.executor": "Run",
-    "Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor": "Debug",
-    "Python tests.Python tests for CompilerTests.TestCompiler.test_print.executor": "Debug",
-    "Python tests.Python tests for compilerTests.TestCompiler.executor": "Run",
-    "Python tests.Python tests for compilerTests.TestCompiler.test_add.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter.test_empty.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter.test_jumps.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.test_functon_defs.executor": "Run",
-    "Python tests.Python tests for printerTests.TestPrinter2.test_jumps.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_add.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_and.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_assign.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_compare.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_div.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_globals.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_if.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_if_elif.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_invert.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_math.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_mult.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_named.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_not.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_or.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_print.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_return.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_simple_function_call.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_sub.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_while.executor": "Run",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_while_break.executor": "Debug",
-    "Python tests.Python tests for simulatorTests.TestSimulator.test_while_continue.executor": "Debug",
-    "Python tests.Python tests in CompilerTests.py.executor": "Debug",
-    "Python tests.Python tests in compilerTests.py.executor": "Run",
-    "Python tests.Python tests in simulatorTests.py.executor": "Run",
-    "Python tests.Unittests for printerTests.executor": "Run",
-    "Python tests.Unittests for simulatorTests.TestSimulator.test_globals.executor": "Debug",
-    "Python tests.Unittests for simulatorTests.TestSimulator.test_if.executor": "Run",
-    "Python.Interpreter.executor": "Debug",
-    "Python.scratch.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for CompilerTests.TestCompiler.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for CompilerTests.TestCompiler.test_print.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for compilerTests.TestCompiler.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for compilerTests.TestCompiler.test_add.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter.test_empty.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter.test_jumps.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter2.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter2.test_functon_defs.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for printerTests.TestPrinter2.test_jumps.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_add.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_and.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_assign.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_compare.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_div.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_globals.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_if.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_if_elif.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_invert.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_math.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_mult.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_named.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_not.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_or.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_print.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_return.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_simple_function_call.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_sub.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_while.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_while_break.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests for simulatorTests.TestSimulator.test_while_continue.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests in CompilerTests.py.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Python tests in compilerTests.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in simulatorTests.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Unittests for printerTests.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Unittests for simulatorTests.TestSimulator.test_globals.executor&quot;: &quot;Debug&quot;,
+    &quot;Python tests.Unittests for simulatorTests.TestSimulator.test_if.executor&quot;: &quot;Run&quot;,
+    &quot;Python.Interpreter.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frame-printing&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "Python",
-      "HTML"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;,
+      &quot;HTML&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="S:\python\slow-human-interpreter\printer" />
@@ -239,7 +248,8 @@
       <workItem from="1747924721413" duration="18457000" />
       <workItem from="1748052482821" duration="438000" />
       <workItem from="1748199785265" duration="930000" />
-      <workItem from="1748442134313" duration="8724000" />
+      <workItem from="1748442134313" duration="8752000" />
+      <workItem from="1748532752339" duration="3406000" />
     </task>
     <task id="LOCAL-00001" summary="starting a rewrite in python">
       <option name="closed" value="true" />
@@ -401,7 +411,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748378978963</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="initial frame printing">
+      <option name="closed" value="true" />
+      <created>1748464182043</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1748464182043</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +446,8 @@
     <MESSAGE value="return statements" />
     <MESSAGE value="pyscript based web runner." />
     <MESSAGE value="css" />
-    <option name="LAST_COMMIT_MESSAGE" value="css" />
+    <MESSAGE value="initial frame printing" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial frame printing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -451,6 +470,6 @@
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Unittests_for_simulatorTests_TestSimulator_test_globals.coverage" NAME="Unittests for simulatorTests.TestSimulator.test_globals Coverage Results" MODIFIED="1748116076233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Unittests_for_simulatorTests_TestSimulator_test_if.coverage" NAME="Unittests for simulatorTests.TestSimulator.test_if Coverage Results" MODIFIED="1748050512421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/slow_human_interpreter$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1748049320114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748370256839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748535676127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

@@ -1,8 +1,7 @@
 {
-  "packages": ["pathlib", "chevron"],
+  "packages": ["pathlib", "chevron>=0.14.0"],
   "files": {
     "./templates/instructionpages.mustache": "templates/instructionpages.mustache",
-    "./templates/blankFrame.html": "templates/blankFrame.html",
     "./interpreter/IntermediateRep.py": "interpreter/IntermediateRep.py",
     "./printer/PrintObjectFactory.py": "PrintObjectFactory.py",
     "./interpreter/Interpreter.py": "interpreter/Interpreter.py",
