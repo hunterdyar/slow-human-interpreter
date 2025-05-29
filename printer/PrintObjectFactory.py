@@ -60,6 +60,20 @@ details = {
         "Place this answer on a card, and put on <span class=\"stack\">the stack</span>.",
         "Discard A and B."
     ],
+    CommandType.OR:[
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
+        "If <strong>either</strong> of these values are truthy (True, a non-zero value, or a non-empty set), place 'True' onto <span class=\"stack\">the stack</span>."
+        "Otherwise, place 'False' onto <span class=\"stack\">the stack</span>.",
+        "Discard A and B."
+    ],
+    CommandType.AND:[
+        "Take the top of <span class=\"stack\">the stack</span> and place on A.",
+        "Take the top of <span class=\"stack\">the stack</span> and place on B.",
+        "If and only if <strong>both</strong> of these values are truthy (True, a non-zero value, or a non-empty set), place 'True' onto <span class=\"stack\">the stack</span>."
+        "Otherwise, place 'False' onto <span class=\"stack\">the stack</span>.",
+        "Discard A and B."
+    ],
     CommandType.PRINT: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Scream the value of the card on A as loudly as you can.",
