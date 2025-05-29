@@ -78,6 +78,7 @@ class Visitor(ast.NodeVisitor):
         self.visit(node.left)
         cmp_name = operator_to_compare_name(node.ops[0])
         self.ir.add_command(Command(CommandType.CMP, cmp_name))
+
     def visit_If(self, node):
         has_else = len(node.orelse) > 0
         self.visit(node.test)
@@ -160,6 +161,27 @@ class Visitor(ast.NodeVisitor):
         raise Exception("imports are not allowed! get out of here with that.")
     def visit_Invert(self, node):
         raise Exception("bitwise invert (~) is not supported, because this machine does not use bits.")
+    def visit_Yield(self, node):
+        raise Exception("Yield is not currently supported.")
+    def visit_YieldFrom(self, node):
+        raise Exception("YieldFrom is not currently supported.")
+    def visit_Await(self, node):
+        raise Exception("Await is not currently supported.")
+    def visit_FormattedValue(self, node):
+        raise Exception("FormattedValue (string formatting) is not currently supported.")
+    def visit_Raise(self, node):
+        raise Exception("Raise is not currently supported.")
+    def visit_Try(self, node):
+        raise Exception("Try is not currently supported.")
+    def visit_TryStar(self, node):
+        raise Exception("TryStar is not currently supported.")
+
+    def visit_Assert(self, node):
+        self.visit(node.test)
+        ump_index = self.ir.add_command(Command(CommandType.JF, -1))
+        self.ir.add_command(Command(CommandType.ABORT))
+        self.ir.update_argument(ump_index, self.ir.get_top_index() + 1)
+
     def visit_Global(self, node):
        for name in node.names:
            self.use_globals_stack[-1].add(name)
@@ -177,6 +199,10 @@ class Visitor(ast.NodeVisitor):
         if func_name == "round":
             self.visit(node.args[0])
             self.ir.add_command(Command(CommandType.ROUND))
+            return True
+        if func_name == "range":
+            raise Exception("range is not supported yet.")
+
         return False
     def visit_arg(self, node):
         self.visit(node.arg)
@@ -228,6 +254,8 @@ class Visitor(ast.NodeVisitor):
         self.visit(node.value)
         self.ir.add_command(Command(CommandType.UNLOADFRAME,1))
         self.ir.add_command(Command(CommandType.EXITFRAME))
+
+
 
     def should_use_globals(self, id):
         if len(self.ir.routine_stack) == 1:

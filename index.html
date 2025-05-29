@@ -7,6 +7,9 @@
         <script type="module" src="https://pyscript.net/releases/2025.5.1/core.js"></script>
         <script type="module" src="./js/print.min.js"></script>
        <style>
+           body{
+               font-family: "Courier", monospace;
+           }
             #loading { outline: none; border: none; background: transparent }
             #test-result{
                 border: 1px solid black;
@@ -16,7 +19,7 @@
                 border: 1px solid red;
             }
             section{
-                width: 400px;
+                max-width: 500px;
                 margin-left: auto;
                 margin-right: auto;
                 border: 1px solid black;
@@ -76,24 +79,39 @@
     </dialog>
   <section class="main">
       <div class="header">
-  <h1>Slow Human Interpreter</h1>
+  <h1>slow human interpreter</h1>
           </div>
             <textarea id="source_field">a = 1+2+3
 print(a)</textarea>
       <div class="testButton">
-                  <button id="test" py-click="test_form">test</button>
+                  <button id="test" py-click="test_form">Simulate Human</button>
       </div>
       <div class="printButton">
-        <button id="print" py-click="submit_form">print instructions</button>
+        <button id="print" py-click="submit_form">Print Instructions</button>
           </div>
         <div id ="testResult">
-            hi
+
         </div>
 
       </section>
   <section class="about">
-      <h3>About</h3>
-      <p>This is a computer, but instead of computer do the compute, human do the compute.<p>
+      <h3>about</h3>
+      <p>Slow Human Interpreter is a python interpreter, sort of like <a href="https://en.wikipedia.org/wiki/CPython" target="_blank">CPython</a>, <a href="https://pypy.org/" target="_blank">PyPy</a>, or <a href="https://micropython.org/" target="_blank">micropython</a>... but much slower. It runs python code. Well, no it doesn't. Actually it <strong>compiles python into printable instructions for a human to execute by hand</strong>. You have to actually do the computing.<p>
+      <p>The instructions are printed, cut, and arranged. The human performs operations on a stack (of index cards) based system.</p>
+      <p><em>It's sort of like setting up a complex board game.</em></p>
+      <p>Slow Human Interpreter only supports a very small subset of Python, and no includes or modules.</p>
+      <p> For your convenience, a human simulator has been provided. "Simulate Human" will compile the instructions and feed them back into a script that executes the code the same way as the printed instructions.</p>
+  </section>
+    <section class="about">
+          <h3>okay but why?</h3>
+            <p>This tool was created by <a href="https://hdyar.com/" target="_blank">Hunter Dyar</a> for use as an in-classroom activity.</p>
+            <p>CPUs, Virtual Machines, Bytecode, and what a program is <em>doing</em> when it executes are challenging concepts to grasp. The activity of slowly, tediously, but carefully performing the acts of am interpreter/VM makes the acts a computer does extremely tangible.</p>
+            <p>Plus, it's fun! Well, depending on what code you choose to run. Once this activity stops being magical, and you start to notice that there are not any compiler optimizations, or you start to predict what the instructions will do... then you're learning!</p>
+            <p>Lastly, as an activity, I love that it's real. It's impractical and silly, but it <strong>is</strong> real. As an educator, I could have animated these concepts or relied on my whiteboard, but there's something that extra bit satisfying running code that you yourself wrote. (er, so long as you didn't choose fibonacci)</p>
+    </section>
+  <section class="about">
+      <p><a href="https://github.com/hunterdyar/slow-human-interpreter" target="_blank">source</a> and technical details. GPL-3.0 License.</p>
+      <p>This webpage runs entirely in your browser (via <a href="https://pyscript.net/" target="_blank">PyScript</a>). No information is transferred to a server besides non-ad supported <a href="https://www.goatcounter.com/" target="_blank">analytics</a>, and downloading PyScript from a CDN.</p>
   </section>
     <script>
         function printHTMLPage(content){
@@ -128,6 +146,7 @@ print(a)</textarea>
 
     </script>
       <script type="py" src="./web/webwrapper.py" config="./pyscript.json"></script>
+  <script data-goatcounter="https://slowhumaninterpreter.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   </body>
 </html>
 

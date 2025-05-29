@@ -115,6 +115,7 @@ class CommandType(Enum):
     SETGLOBAL = 19
     EXITFRAME = 20
     UNLOADFRAME = 21
+    ABORT = 22
     #JT = 13,
     #JZ = 14,
 

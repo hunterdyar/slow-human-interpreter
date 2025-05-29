@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="initial frame printing">
+    <list default="true" id="3a8c0f82-7b59-4804-bf29-18ccac566b8b" name="Changes" comment="Webpage about first-draft.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/humanSimulator/humanSimulator.py" beforeDir="false" afterPath="$PROJECT_DIR$/humanSimulator/humanSimulator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/IntermediateRep.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/IntermediateRep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/Interpreter.py" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/Interpreter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/printer/PrintObjectFactory.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/PrintObjectFactory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/printer/Printer.py" beforeDir="false" afterPath="$PROJECT_DIR$/printer/Printer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyscript.json" beforeDir="false" afterPath="$PROJECT_DIR$/pyscript.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/blankFrame.mustache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/instructionpages.mustache" beforeDir="false" afterPath="$PROJECT_DIR$/templates/instructionpages.mustache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/webwrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/webwrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,16 +20,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -63,7 +51,6 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;Python tests.Python tests for CompilerTests.TestCompiler.executor&quot;: &quot;Run&quot;,
     &quot;Python tests.Python tests for CompilerTests.TestCompiler.test_add.executor&quot;: &quot;Debug&quot;,
@@ -108,7 +95,7 @@
     &quot;Python.scratch.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;frame-printing&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -248,8 +235,6 @@
       <workItem from="1747924721413" duration="18457000" />
       <workItem from="1748052482821" duration="438000" />
       <workItem from="1748199785265" duration="930000" />
-      <workItem from="1748442134313" duration="8752000" />
-      <workItem from="1748532752339" duration="3406000" />
     </task>
     <task id="LOCAL-00001" summary="starting a rewrite in python">
       <option name="closed" value="true" />
@@ -403,23 +388,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748375358527</updated>
     </task>
-    <task id="LOCAL-00020" summary="css">
+    <task id="LOCAL-00020" summary="Webpage about first-draft.">
       <option name="closed" value="true" />
-      <created>1748378978963</created>
+      <created>1748392301326</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1748378978963</updated>
+      <updated>1748392301326</updated>
     </task>
-    <task id="LOCAL-00021" summary="initial frame printing">
-      <option name="closed" value="true" />
-      <created>1748464182043</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1748464182043</updated>
-    </task>
-    <option name="localTasksCounter" value="22" />
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -445,9 +422,8 @@
     <MESSAGE value="npattern matching instead of ifelif" />
     <MESSAGE value="return statements" />
     <MESSAGE value="pyscript based web runner." />
-    <MESSAGE value="css" />
-    <MESSAGE value="initial frame printing" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial frame printing" />
+    <MESSAGE value="Webpage about first-draft." />
+    <option name="LAST_COMMIT_MESSAGE" value="Webpage about first-draft." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -470,6 +446,6 @@
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Unittests_for_simulatorTests_TestSimulator_test_globals.coverage" NAME="Unittests for simulatorTests.TestSimulator.test_globals Coverage Results" MODIFIED="1748116076233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/slow_human_interpreter$Unittests_for_simulatorTests_TestSimulator_test_if.coverage" NAME="Unittests for simulatorTests.TestSimulator.test_if Coverage Results" MODIFIED="1748050512421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/slow_human_interpreter$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1748049320114" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$APPLICATION_CONFIG_DIR$/scratches" />
-    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748535676127" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/slow_human_interpreter$.coverage" NAME=" Coverage Results" MODIFIED="1748370256839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
   </component>
 </project>

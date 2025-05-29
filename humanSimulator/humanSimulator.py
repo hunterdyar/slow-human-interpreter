@@ -161,6 +161,8 @@ class Frame:
                 case CommandType.EXITFRAME:
                     self.clean_stack()
                     return self.return_val
+                case CommandType.ABORT:
+                    raise Exception("Aborted!")
                 case _:
                     raise Exception("Runtime (simulator) error. Unknown command '" + str(instruction.command) + "'")
             self.instr += 1
