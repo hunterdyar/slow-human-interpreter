@@ -176,6 +176,7 @@ def get_pretty_ir(ir: IntermediateRep, options):
             out["frames"].append("frame")
 
         # if has globals AND if exclude-globals
+        out["globals"] = []
         if options["ir_has_globals"]:
             out["globals"].append("global")
     else:
@@ -210,5 +211,8 @@ def get_pretty_argument(command, argument):
         return str(argument)
     elif command == CommandType.JMP or command == CommandType.JF:
         return argument+1 # commands start counting at 1 so we have to offset the internal (0 index) to the visual (counting). also: lol, lmao
+    elif isinstance(argument, int):
+        # prevent 0 from being falsey
+        return str(argument)
     else:
         return argument

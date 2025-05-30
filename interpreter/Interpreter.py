@@ -44,10 +44,10 @@ class Visitor(ast.NodeVisitor):
         if self.should_use_globals(node.id):
             # push global!
             global_index = self.ir.get_global_index(node.id)
-            self.ir.add_command(Command(CommandType.PUSHGLOBAL, global_index))
+            self.ir.add_command(Command(CommandType.PUSHGLOBAL, str(global_index)))
         else:
             local_index = self.ir.get_local_index(node.id)
-            self.ir.add_command(Command(CommandType.PUSHLOCAL, local_index))
+            self.ir.add_command(Command(CommandType.PUSHLOCAL, str(local_index)))
         self.generic_visit(node)
 
     def visit_Assign(self, node):
@@ -66,10 +66,10 @@ class Visitor(ast.NodeVisitor):
         if self.should_use_globals(target):
             # push global!
             global_index = self.ir.get_or_set_global_index(target)
-            self.ir.add_command(Command(CommandType.SETGLOBAL, global_index))
+            self.ir.add_command(Command(CommandType.SETGLOBAL, str(global_index)))
         else:
             local_index = self.ir.get_or_set_local_index(target)
-            self.ir.add_command(Command(CommandType.SETLOCAL, local_index))
+            self.ir.add_command(Command(CommandType.SETLOCAL, str(local_index)))
 
     def visit_Compare(self, node):
         if len(node.comparators) != 1:
