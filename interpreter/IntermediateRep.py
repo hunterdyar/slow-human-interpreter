@@ -31,6 +31,7 @@ class Routine:
 
 class IntermediateRep:
     def __init__(self):
+        self.compiled_globals = []
         self.routines = {}
         self.routine_stack = []
         self.routine_stack.append(Routine("main"))
@@ -74,8 +75,6 @@ class IntermediateRep:
     def __repr__(self):
         return str(self)
 
-    def get_global_index(self, id):
-        return self.routine_stack[0].get_local_index(id)
     def get_local_index(self, id):
         # python uses globals, not punch-through locals...right?
         if id in self.routine_stack[-1].locals:
@@ -92,7 +91,6 @@ class IntermediateRep:
 
 
 class CommandType(Enum):
-
     PRINT = 0,
     PUSH = 1,
     POP = 2,
@@ -115,7 +113,9 @@ class CommandType(Enum):
     SETGLOBAL = 19
     EXITFRAME = 20
     UNLOADFRAME = 21
-    ABORT = 22
+    APPENDTOGLOBAL = 22
+    COUNTLENGTH = 23
+    ABORT = 24
     #JT = 13,
     #JZ = 14,
 
@@ -135,4 +135,7 @@ class Command:
     def __repr__(self):
         return str(self.command)
 
+class Pointer:
+    def __init__(self, global_id):
+        self.global_id = global_id
 

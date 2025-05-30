@@ -17,3 +17,9 @@ class TestCompiler(unittest.TestCase):
         print(x)
         self.assertEqual(1, len(x.routines))
         self.assertEqual(3, len(x.routines["main"].instructions))
+
+    def test_lists(self):
+        code = "x = [0,1,2,3]"
+        x = interpret(code)
+
+        self.assertNotEqual(x, None)

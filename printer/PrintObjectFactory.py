@@ -1,4 +1,4 @@
-from interpreter.IntermediateRep import CommandType, Routine, Command, IntermediateRep
+from interpreter.IntermediateRep import CommandType, Routine, Command, IntermediateRep, Pointer
 
 command_name_lookup = {
     CommandType.PUSH: "Push",
@@ -23,6 +23,8 @@ command_name_lookup = {
     CommandType.LOADFRAME: "Load Locals",
     CommandType.EXITFRAME: "Exit Procedure",
     CommandType.UNLOADFRAME: "Unload From Frame",
+    CommandType.APPENDTOGLOBAL: "Append To Global Var",
+    CommandType.COUNTLENGTH: "Count Global Column",
     CommandType.ABORT: "Abort",
 }
 details = {
@@ -140,6 +142,11 @@ details = {
     CommandType.ABORT:[
         "Uh Oh, something has gone wrong! This command means something invalid happened.",
         "No clue what to do next. Abort!"
+    ],
+    CommandType.COUNTLENGTH:[
+        "Take the top of the stack and put on A.",
+        "Count the number of rows of the column at global position A. It could be zero.",
+        "Take this count and put it on the stack. Discard A."
     ]
 }
 argumentLookup = {
@@ -212,7 +219,9 @@ def get_pretty_argument(command, argument):
     elif command == CommandType.JMP or command == CommandType.JF:
         return argument+1 # commands start counting at 1 so we have to offset the internal (0 index) to the visual (counting). also: lol, lmao
     elif isinstance(argument, int):
-        # prevent 0 from being falsey
+        # prevent 0 from being false
         return str(argument)
+    elif isinstance(argument, Pointer):
+        return "Global at "+str(argument.global_id)
     else:
         return argument

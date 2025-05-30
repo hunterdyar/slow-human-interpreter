@@ -1,5 +1,5 @@
 import ast
-from interpreter.IntermediateRep import IntermediateRep, CommandType, Command
+from interpreter.IntermediateRep import IntermediateRep, CommandType, Command, Pointer
 
 
 def interpret(source: str) -> IntermediateRep:
@@ -12,6 +12,7 @@ def interpret(source: str) -> IntermediateRep:
 
 class Visitor(ast.NodeVisitor):
     use_globals_stack = []
+    global_id_to_index_lookup = {}
     break_command_stack = []
     continue_command_stack = []
     def __init__(self, ir: IntermediateRep):
@@ -43,7 +44,8 @@ class Visitor(ast.NodeVisitor):
         # determine if this is a local or a global
         if self.should_use_globals(node.id):
             # push global!
-            global_index = self.ir.get_global_index(node.id)
+            global_index = self.get_global_index(node.id)
+
             self.ir.add_command(Command(CommandType.PUSHGLOBAL, str(global_index)))
         else:
             local_index = self.ir.get_local_index(node.id)
@@ -122,7 +124,6 @@ class Visitor(ast.NodeVisitor):
         for continue_command_index in self.continue_command_stack[-1]:
             self.ir.update_argument(continue_command_index, start_of_loop)
         self.continue_command_stack.pop()
-
         self.ir.update_argument(cond_jump_index, exit_point)
 
     def visit_Break(self, node):
@@ -147,14 +148,8 @@ class Visitor(ast.NodeVisitor):
         raise Exception("Dict is not currently supported.")
     def visit_DictComp(self, node):
         raise Exception("DictComp is not currently supported.")
-    def visit_ListComp(self, node):
-        raise Exception("ListComp is not currently supported.")
-    def visit_SetComp(self, node):
-        raise Exception("SetComp is not currently supported.")
     def visit_GeneratorExp(self, node):
         raise Exception("GeneratorExp is not currently supported.")
-    def visit_Slice(self, node):
-        raise Exception("You got to slice without going through subscript. uh oh.")
     def visit_ImportFrom(self, node):
         raise Exception("imports are not allowed! get out of here with that.")
     def visit_Import(self, node):
@@ -175,6 +170,10 @@ class Visitor(ast.NodeVisitor):
         raise Exception("Try is not currently supported.")
     def visit_TryStar(self, node):
         raise Exception("TryStar is not currently supported.")
+
+    def visit_AugAssign(self, node):
+        raise Exception("AugAssign is not currently supported.")
+
 
     def visit_Assert(self, node):
         self.visit(node.test)
@@ -200,6 +199,14 @@ class Visitor(ast.NodeVisitor):
             self.visit(node.args[0])
             self.ir.add_command(Command(CommandType.ROUND))
             return True
+        if func_name == "len":
+            # this should be a pointer
+            self.visit(node.args[0])
+            self.ir.add_command(Command(CommandType.COUNTLENGTH))
+            return True
+        if func_name == "append":
+            # todo: dot access? uhg. we could ... flip it around? objects aren't really supported yet, they would get turned into list command by the compiler.
+            raise Exception("append is not currently supported.")
         if func_name == "range":
             raise Exception("range is not supported yet.")
 
@@ -256,6 +263,31 @@ class Visitor(ast.NodeVisitor):
         self.ir.add_command(Command(CommandType.EXITFRAME))
 
 
+    def visit_Subscript(self, node):
+        raise Exception("Subscript is not currently supported.")
+
+    def visit_Slice(self, node):
+        raise Exception("You got to slice without going through subscript. uh oh.")
+
+    def visit_List(self, node):
+        # should leave a pointer on the stack.
+
+        length = len(node.elts)
+        for item in reversed(node.elts):
+            self.visit(item)
+        # should get a fresh id.
+        g = self.get_global_index(str(node.elts))
+        self.ir.add_command(Command(CommandType.SETGLOBAL, g))
+        self.ir.add_command(Command(CommandType.APPENDTOGLOBAL, (g,length-1)))
+        self.ir.add_command(Command(CommandType.PUSH, Pointer(g)))
+
+        raise Exception("List is not currently supported.")
+
+    def visit_ListComp(self, node):
+        raise Exception("ListComp is not currently supported.")
+
+    def visit_SetComp(self, node):
+        raise Exception("SetComp is not currently supported.")
 
     def should_use_globals(self, id):
         if len(self.ir.routine_stack) == 1:
@@ -265,6 +297,13 @@ class Visitor(ast.NodeVisitor):
                 return True
         return False
 
+    def get_global_index(self, id):
+        if id in self.global_id_to_index_lookup:
+            return self.global_id_to_index_lookup[id]
+        else:
+            next_id = max(self.global_id_to_index_lookup.values())+1
+            self.global_id_to_index_lookup[id] = next_id
+            return next_id
 
 def operator_type_to_command_type(op: ast.operator | ast.boolop | ast.unaryop) -> CommandType:
     if isinstance(op, ast.Add):
