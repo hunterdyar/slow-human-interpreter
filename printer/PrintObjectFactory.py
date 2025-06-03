@@ -184,7 +184,7 @@ def get_pretty_ir(ir: IntermediateRep, options):
 
         # if has globals AND if exclude-globals
         out["globals"] = []
-        if options["ir_has_globals"]:
+        if "ir_has_globals" in options and options["ir_has_globals"]:
             out["globals"].append("global")
     else:
         out["frames"] = ["frame"]
