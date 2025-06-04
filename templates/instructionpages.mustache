@@ -11,28 +11,32 @@
         padding: 0;
         size: letter landscape;
     }
+    @page insref{
+        margin: 1in;
+        padding: .1in;
+        size: letter portrait;
+    }
     </style>
     <style>
-
         .instruction-container{
             page: instructions;
             display: grid;
             grid-template-columns: 50% 50%;
-            grid-template-rows: 25% 25% 25% 25%;
-            grid-auto-flow: column dense;
+            grid-template-rows: repeat(8, calc(100%/8));
+            grid-auto-columns: 50%;
         }
         .instruction{
             position: relative;
             display: block;
             outline: 2px solid black;
-            width: 4.25in;
-            height: calc(11in/4);
+            /*width: 4.25in;*/
+            height: calc(11in/8);
         }
         .instruction-number{
             position: absolute;
             right:.25in;
             bottom:0;
-            font-size: 64pt;
+            font-size: 48pt;
             color: dimgrey;
         }
         .routine-name{
@@ -49,15 +53,24 @@
         }
         .instruction-name{
             text-align: center;
-            font-size: 28pt;
+            font-size: 24pt;
+            margin-top: .25in;
             margin-left: .55in;
             margin-right:.55in;
+            text-overflow: ellipsis;
+
         }
         .instruction-details .argument{
             color: forestgreen;
         }
         .instruction-details .stack{
             color: darkblue;
+        }
+        .instruction-argument{
+            position: absolute;
+            bottom: .2in;
+            left: 50%;
+            right: 50%;
         }
         .instruction-argument h1,h2,h3,h4,h5,h6{
             margin-top: .1in;
@@ -137,7 +150,7 @@
     }
     .cardarea{
       width: 2.5in;
-      height: 3in;
+      height: 1.5in;
 
       margin: auto;
       border: 2px dashed black;
@@ -196,8 +209,35 @@
     }
 
   </style>
+    <style>
+        div.instruction-reference{
+            margin: 1in;
+            page: insref;
+            page-break-before: avoid;
+            page-break-after: avoid;
+        }
+        .instruction-reference h1{
+            grid-area: none;
+        }
+    </style>
     </head>
 <body>
+        <div class="instruction-reference">
+            <h1>Instruction Reference</h1>
+    {{# instructions }}
+            <div>
+                <h2>{{name}}</h2>
+                <div>
+                    <ol>
+                    {{#details}}
+                        <li>{{{.}}}</li>
+                    {{/details}}
+                    </ol>
+                </div>
+            </div>
+    {{/instructions}}
+     </div>
+
     {{# routines}}
         <div class="page">
 <!--        <h1 class="routine-start"></h1>-->
@@ -207,9 +247,6 @@
                     <p class="proc-header">procedure instructions for:</p>
                     <h2 class="procedure-title">{{name}}</h2>
                     {{main}}
-                    <p>Unless otherwise instructed, complete these instructions in numerical order.</p>
-                    <p>When there are no more instructions to complete, you are finished.</p>
-
                     <div class="routine-name">
                         {{routine}}
                     </div>
@@ -224,13 +261,6 @@
                         <h3>{{{.}}}</h3>
                     </div>
                     {{/argument}}
-                    <div class="instruction-details">
-                        <ol>
-                            {{#details}}
-                            <li>{{{.}}}
-                            {{/details}}
-                        </ol>
-                    </div>
                     <div class="routine-name">
                         {{routine}}
                     </div>

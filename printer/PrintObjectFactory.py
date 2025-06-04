@@ -1,3 +1,5 @@
+from dis import Instruction
+
 from interpreter.IntermediateRep import CommandType, Routine, Command, IntermediateRep
 
 command_name_lookup = {
@@ -27,7 +29,7 @@ command_name_lookup = {
 }
 details = {
     CommandType.PUSH: [
-        "Put the <span class=\"argument\">above value</span> onto <span class=\"stack\">the stack</span>."
+        "Put the <span class=\"argument\">argument value</span> onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.POP: [
         "Take the top of <span class=\"stack\">the stack</span> and place on the discard pile."
@@ -35,8 +37,8 @@ details = {
     CommandType.ADD: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Take the top of <span class=\"stack\">the stack</span> and place on B.",
-        "<strong>Add</strong> these two values together and note the answer.",
-        "Place this answer on a card, and place on top of <span class=\"stack\">the stack</span>.",
+        "<strong>Add</strong> these two values together and put this answer on a card.",
+        "Place the answer on top of <span class=\"stack\">the stack</span>.",
         "Discard A and B."
     ],
     CommandType.SUB: [
@@ -76,7 +78,7 @@ details = {
     ],
     CommandType.PRINT: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
-        "Scream the value of the card on A at an appropriately load volume.",
+        "Shout the value of the card on A at an appropriately load volume.",
         "Discard A"
     ],
     CommandType.NOT: [
@@ -88,17 +90,17 @@ details = {
     CommandType.CMP: [
         "Take the top of <span class=\"stack\">the stack</span> and place on A.",
         "Take the top of <span class=\"stack\">the stack</span> and place on B.",
-        "Compare A and B using the above operator. A is to the left and B is to the right.",
+        "Compare A and B using the <span class=\"argument\">provided operation</span>. A is to the left and B is to the right.",
         "Take the result (which should be 'True' or 'False') and place on the top of <span class=\"stack\">the stack</span>."
         "Discard A and B."
     ],
     CommandType.JMP: [
-        "Instead of flipping to the next instruction. Instead, flip to the <span class=\"argument\">above instruction</span>."
+        "Instead of flipping to the next instruction, flip to the instruction at the <span class=\"argument\">provided number</span>. Do that instruction next."
     ],
     CommandType.JF: [
         "Take the top of <span class=\"stack\">the stack</span> and place it on A.",
         "If this value is <strong>True</strong>, a non-zero value, or a non-empty set, discard the value and continue.",
-        "If this value is <strong>False</strong>, <strong>None</strong>, or <strong>0</strong>, flip to the  <span class=\"argument\">above instruction number</span>. Do that instruction next.",
+        "If this value is <strong>False</strong>, <strong>None</strong>, or <strong>0</strong>, flip to the instruction at the <span class=\"argument\">provided number</span>. Do that instruction next.",
         "Discard the tested value on A, if you have not already.",
     ],
     CommandType.ROUND:[
@@ -113,24 +115,24 @@ details = {
         "Begin following those instructions at instruction 1."
     ],
     CommandType.LOADFRAME: [
-        "For the above number of times, move the top item of the (now previous) <span class=\"stack\">stack</span>. onto the next available position in locals.",
+        "For the above number of times, move the top item of the (now previous) <span class=\"stack\">stack</span> onto the next available position in locals.",
     ],
     CommandType.PUSHLOCAL:[
-        "Copy the value at the above <span class=\"argument\">local position number</span> and put it onto <span class=\"stack\">the stack</span>."
+        "Copy the value at the provided <span class=\"argument\">local position number</span> and put it onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.SETLOCAL:[
-        "If the local at the <span class=\"argument\">above position number</span>, discard it.",
-       "Take the top of <span class=\"stack\">the stack</span> and place it on the <span class=\"argument\">above position number</span>.",
+        "If there is a local at the <span class=\"argument\">provided position number</span>, discard it.",
+       "Take the top of <span class=\"stack\">the stack</span> and place it on the <span class=\"argument\">provided position number</span>.",
     ],
     CommandType.PUSHGLOBAL:[
-        "Copy the value at the above <span class=\"argument\">global position</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
+        "Copy the value at the provided <span class=\"argument\">global position</span> from the heap and put it onto <span class=\"stack\">the stack</span>."
     ],
     CommandType.SETGLOBAL:[
-        "If the above positon global has a value, discard it.",
+        "If the global at the provided positon has a value, discard it.",
         "Put the top value of <span class=\"stack\">the stack</span> and place it on the heap, on the above <span class=\"argument\">global position</span>."
     ],
     CommandType.UNLOADFRAME:[
-        "For the above number of times, move the top item of the stack onto the previous stack.",
+        "For the  <span class=\"argument\">provided number of times</span>, move the top item of the stack onto the previous stack.",
     ],
     CommandType.EXITFRAME:[
         "Discard all cards on this frames stack and locals.",
@@ -139,7 +141,7 @@ details = {
     ],
     CommandType.ABORT:[
         "Uh Oh, something has gone wrong! This command means something invalid happened.",
-        "No clue what to do next. Abort!"
+        "We can't know what to do next. Abort!"
     ]
 }
 argumentLookup = {
@@ -165,17 +167,26 @@ def get_pretty_ir(ir: IntermediateRep, options):
                         for r in ir.routines.values()
                         for ins in r.instructions
                         if ins.command == CommandType.PUSHGLOBAL or ins.command == CommandType.PUSHLOCAL])
+
+    if "only_used_instructions" not in options:
+        options["only_used_instructions"] = True
+
+    if options["only_used_instructions"]:
+        out["instructions"] = sorted([get_pretty_instruction(ct) for ct in ir.used_instructions], key=lambda k: k["name"])
+    else:
+        out["instructions"] = sorted([get_pretty_instruction(ct) for ct in CommandType], key=lambda x: x["name"])
+
     # scan IR for checks
     if uses_globals:
         options["ir_has_globals"] = True
 
     #turn on and off output settings
     if options:
-        out["frames"] = []
-        for option in range(options["frameCount"]):
-            out["frames"].append("frame")
+        if options["inc_frames"] is not None and options["inc_frames"]:
+            out["frames"] = []
+            for option in range(options["frameCount"]):
+                out["frames"].append("frame")
 
-        # if has globals AND if exclude-globals
         out["globals"] = []
         if "ir_has_globals" in options and options["ir_has_globals"]:
             out["globals"].append("global")
@@ -201,6 +212,12 @@ def get_pretty_command(command: Command, num: int, routine_name: str):
                "routine": routine_name,
                }
     return out
+
+def get_pretty_instruction(command_type: CommandType):
+    return {"name": command_name_lookup[command_type],
+           "details": details[command_type]
+           }
+
 
 def get_pretty_argument(command, argument):
     if command == CommandType.CMP:

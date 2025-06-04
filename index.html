@@ -37,6 +37,7 @@
                     "hd hd"
                     "text text"
                     "testbutton printbutton"
+                    "printoptions printoptions"
                     "testResult testResult";
                 grid-row-gap: 1em;
 
@@ -57,9 +58,13 @@
             .printButton{
                 grid-area: printbutton;
             }
+            .printOptions{
+                grid-area: printoptions;
+            }
             #testResult{
                 grid-area: testResult;
             }
+
             button{
                 width: 100%
             }
@@ -114,6 +119,17 @@ print(a)</textarea>
       <div class="printButton">
         <button id="print" py-click="submit_form">Print Instructions</button>
           </div>
+      <div class="printOptions">
+          <div>
+             <input type="checkbox" id="check_print_frames" name="Print Frames" checked /><label for="check_print_frames">Include Frames</label>
+          </div>
+          <div>
+            <input type="checkbox" id="check_print_instructionPage" name="Print Frames" checked /><label for="check_print_instructionPage">Include Instruction Reference</label>
+              <input type="checkbox" id="check_print_filter_used" name="Print Frames" checked /><label for="check_print_filter_used">Only Used</label>
+
+          </div>
+
+      </div>
         <div id ="testResult">
 
         </div>
@@ -142,12 +158,19 @@ print(a)</textarea>
       <p>This webpage runs entirely in your browser (via <a href="https://pyscript.net/" target="_blank">PyScript</a>). No information is transferred to a server besides non-ad supported <a href="https://www.goatcounter.com/" target="_blank">analytics</a>, and downloading PyScript from a CDN.</p>
   </section>
     <script>
+        includeInsRef = document.getElementById("check_print_instructionPage")
+        filterUsed = document.getElementById("check_print_filter_used")
+        includeInsRef.onchange = (e)=>{
+            console.log("hi")
+            filterUsed.disabled = !includeInsRef.checked
+        }
+
         function printHTMLPage(content){
             var printwin = window.open('','','toolbar=0,scrollbars=0,status=0,dir=ltr');
             printwin.document.write(content)
             printwin.focus()
             printwin.print()
-            printwin.close()
+           // printwin.close()
         }
         const testResDiv = document.getElementById("testResult")
         function testResult(res, isSuccess){

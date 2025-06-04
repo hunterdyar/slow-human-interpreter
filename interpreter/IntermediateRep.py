@@ -33,10 +33,12 @@ class IntermediateRep:
     def __init__(self):
         self.routines = {}
         self.routine_stack = []
+        self.used_instructions = set()
         self.routine_stack.append(Routine("main"))
 
     def add_command(self, command):
         self.routine_stack[-1].instructions.append(command)
+        self.used_instructions.add(command.command)
         return len(self.routine_stack[-1].instructions) - 1
 
     def update_argument(self, command_index, new_argument):

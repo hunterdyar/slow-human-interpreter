@@ -9,11 +9,16 @@ print("loaded!")
 used_frame_count = 1
 desired_frame_count = -1
 source_field = document.querySelector("#source_field")
-
+check_print_frames = document.querySelector("#check_print_frames")
+check_print_instructionPage = document.querySelector("#check_print_instructionPage")
+check_filter_used = document.querySelector("#check_print_filter_used")
 def do_compile(source: str) -> str:
     fc = desired_frame_count
     options = {}
-    if desired_frame_count < 0:
+    options["inc_frames"] = check_print_frames.checked
+    options["inc_instructions"] = check_print_instructionPage.checked
+    options["only_used_instructions"] = check_filter_used.checked
+    if options["inc_frames"] and desired_frame_count < 0:
         run_test()
         fc = used_frame_count
     options["frameCount"] = fc
