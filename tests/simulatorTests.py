@@ -202,3 +202,11 @@ def addup(a,b,c):
 print(addup(1,2,3))
     """)
         self.assertEqual("6", result)
+
+    def test_list_1(self):
+        result = execute_get_output("""
+a = [1,2,3]
+print(a)
+    """)
+        self.assertEqual("6", result)
+

@@ -34,9 +34,10 @@ def run_test():
     used_frame_count = sim.maxFameCount
 
     return sim
-def test_form(e):
+def test_form(event):
     try:
         sim = run_test()
         testResult(sim.output,True)
-    except e:
+    except Exception as e:
         testResult(e,False)
+        raise e

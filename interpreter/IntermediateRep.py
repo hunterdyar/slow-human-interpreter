@@ -139,3 +139,6 @@ class Pointer:
     def __init__(self, global_id):
         self.global_id = global_id
 
+    def __get__(self, instance, owner):
+        return instance.get_or_set_global_index(self.global_id)
+

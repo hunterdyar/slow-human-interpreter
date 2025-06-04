@@ -1,5 +1,6 @@
 from interpreter.IntermediateRep import CommandType
 
+
 class HumanSimulator:
     def __init__(self, intermediate, use_implicit_return = False):
         self.ir = intermediate
@@ -39,9 +40,9 @@ class Frame:
             instruction = self.routine.instructions[self.instr]
             loop_count += 1
             if len(self.sim.stack) > 512:
-                raise Exception("Stack Overflow Exception")
+                raise SimException("Stack Overflow Exception")
             if loop_count > 100000:
-                raise Exception("Execution limit exceeded (infinite loop?)")
+                raise SimException("Execution limit exceeded (infinite loop?)")
 
             match instruction.command:
                 case CommandType.PUSH:
@@ -139,7 +140,7 @@ class Frame:
                 case CommandType.PUSHLOCAL:
                     local_id = int(instruction.argument)
                     if local_id >= len(self.locals):
-                        raise Exception("Runtime (simulator) error. Global ID out of range")
+                        raise SimException("Runtime (simulator) error. Global ID out of range")
                     self.sim.stack.append(self.locals[local_id])
                 case CommandType.SETLOCAL:
                     local_id = int(instruction.argument)
@@ -149,22 +150,29 @@ class Frame:
                 case CommandType.PUSHGLOBAL:
                     global_id = int(instruction.argument)
                     if global_id >= len(self.sim.globals):
-                        raise Exception("Runtime (simulator) error. Global ID out of range")
-                    self.sim.stack.append(self.sim.globals[global_id])
+                        raise SimException("Runtime (simulator) error. Global ID ("+str(global_id)+") out of range ("+str(len(self.sim.globals))+")")
+                    self.sim.stack.append(self.sim.globals[global_id][0])
                 case CommandType.SETGLOBAL:
                     global_id = int(instruction.argument)
                     while len(self.sim.globals) < global_id+1:
-                        self.sim.globals.append(None)
-                    self.sim.globals[global_id] = self.sim.stack.pop()
+                        self.sim.globals.append([])
+                    self.sim.globals[global_id] = [self.sim.stack.pop()]
                 case CommandType.UNLOADFRAME:
                     self.return_val = self.sim.stack.pop()
                 case CommandType.EXITFRAME:
                     self.clean_stack()
                     return self.return_val
+                case CommandType.APPENDTOGLOBAL:
+                    (global_id, count) = instruction.argument
+                    # if global doesn't exist, add it.
+                    while len(self.sim.globals) <= global_id:
+                        self.sim.globals.append([])
+                    for x in range(count):
+                        self.sim.globals[global_id].append(self.sim.stack.pop())
                 case CommandType.ABORT:
-                    raise Exception("Aborted!")
+                    raise SimException("Aborted!")
                 case _:
-                    raise Exception("Runtime (simulator) error. Unknown command '" + str(instruction.command) + "'")
+                    raise SimException("Runtime (simulator) error. Unknown command '" + str(instruction.command) + "'")
             self.instr += 1
 
         if self.implicit_return:
@@ -178,3 +186,6 @@ class Frame:
     def clean_stack(self):
         while len(self.sim.stack) > self.starting_stack_len:
             self.sim.stack.pop()
+
+class SimException(BaseException):
+    pass

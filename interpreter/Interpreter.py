@@ -45,7 +45,6 @@ class Visitor(ast.NodeVisitor):
         if self.should_use_globals(node.id):
             # push global!
             global_index = self.get_global_index(node.id)
-
             self.ir.add_command(Command(CommandType.PUSHGLOBAL, str(global_index)))
         else:
             local_index = self.ir.get_local_index(node.id)
@@ -262,7 +261,6 @@ class Visitor(ast.NodeVisitor):
         self.ir.add_command(Command(CommandType.UNLOADFRAME,1))
         self.ir.add_command(Command(CommandType.EXITFRAME))
 
-
     def visit_Subscript(self, node):
         raise Exception("Subscript is not currently supported.")
 
@@ -271,17 +269,13 @@ class Visitor(ast.NodeVisitor):
 
     def visit_List(self, node):
         # should leave a pointer on the stack.
-
         length = len(node.elts)
         for item in reversed(node.elts):
             self.visit(item)
         # should get a fresh id.
         g = self.get_global_index(str(node.elts))
-        self.ir.add_command(Command(CommandType.SETGLOBAL, g))
-        self.ir.add_command(Command(CommandType.APPENDTOGLOBAL, (g,length-1)))
+        self.ir.add_command(Command(CommandType.APPENDTOGLOBAL, (g,length)))
         self.ir.add_command(Command(CommandType.PUSH, Pointer(g)))
-
-        raise Exception("List is not currently supported.")
 
     def visit_ListComp(self, node):
         raise Exception("ListComp is not currently supported.")
@@ -301,7 +295,9 @@ class Visitor(ast.NodeVisitor):
         if id in self.global_id_to_index_lookup:
             return self.global_id_to_index_lookup[id]
         else:
-            next_id = max(self.global_id_to_index_lookup.values())+1
+            next_id = 0
+            if len(self.global_id_to_index_lookup) > 0:
+                next_id = max(self.global_id_to_index_lookup.values())+1
             self.global_id_to_index_lookup[id] = next_id
             return next_id
 
